@@ -80,9 +80,9 @@
         </ul>
       </div>
 
-      <div class="nav__toggle" id="nav-toggle">
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false">
         <i class='bx bx-menu'></i>
-      </div>
+      </button>
     </nav>
   </header>
 
@@ -342,22 +342,55 @@
     const navMenu   = document.getElementById("nav-menu");
     const header    = document.querySelector(".l-header");
 
-    navToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("show");
-      if (navMenu.classList.contains("show") && header) {
-        header.classList.remove("is-hidden");
-      }
-    });
+    if (navToggle && navMenu) {
+      const setMenuState = (isOpen) => {
+        navMenu.classList.toggle("show", isOpen);
+        navToggle.classList.toggle("active", isOpen);
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+        if (header) {
+          header.classList.remove("is-hidden");
+        }
+      };
 
-    /* Keep the header visible while scrolling */
-    function keepHeaderVisible() {
-      if (header) {
-        header.classList.remove("is-hidden");
+      navToggle.addEventListener("click", () => {
+        setMenuState(!navMenu.classList.contains("show"));
+      });
+
+      navMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMenuState(false));
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 719) {
+          setMenuState(false);
+        }
+      });
+    }
+
+    /* Header hide/show on scroll */
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateHeaderVisibility() {
+      if (!header) return;
+
+      const currentScrollY = window.scrollY;
+      const shouldHide = currentScrollY > 80 && currentScrollY > lastScrollY;
+
+      header.classList.toggle("is-hidden", shouldHide);
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    function handleScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeaderVisibility);
+        ticking = true;
       }
     }
 
-    window.addEventListener("scroll", keepHeaderVisible, { passive: true });
-    keepHeaderVisible();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateHeaderVisibility();
 
     /* Typewriter for HELLO */
     const helloText = "HI " + "\n" + "I'M RAJAVARMAN";
@@ -400,6 +433,15 @@
       let dragStartY = 0;
       let ballStartX = 0;
       let ballStartY = 0;
+
+      function autoOpenNavBall() {
+        // Open on every page visit after the initial layout is ready, so the
+        // menu items can animate out from the ball's actual position.
+        window.requestAnimationFrame(() => {
+          openBallMenu();
+          window.setTimeout(closeBallMenu, 1200);
+        });
+      }
 
       function nbSwitchIcon(index) {
         if (!ballIconEl) {
@@ -535,6 +577,8 @@
           updateBallItems();
         }
       });
+
+      autoOpenNavBall();
     }
 
     function rotateRole() {
