@@ -155,10 +155,26 @@
 
       <div class="skills__container bd-grid">
         <div class="skills__box doodle-box">
-          <h3 class="skills__subtitle">Development</h3>
+          <h3 class="skills__subtitle">Programming Language</h3>
           <div class="skills__list">
-            <span class="skills__name">Html</span>
-            <span class="skills__name">Css</span>
+            <span class="skills__name">HTML</span>
+            <span class="skills__name">CSS</span>
+            <span class="skills__name">Java Script</span>
+            <span class="skills__name">Python</span>
+            <span class="skills__name">Flask</span>
+          </div>
+
+          <h3 class="skills__subtitle">Tools</h3>
+          <div class="skills__list">
+            <span class="skills__name">Git</span>
+            <span class="skills__name">GitHub</span>
+            <span class="skills__name">Google Colab</span>
+            <span class="skills__name">VS Code</span>
+          </div>
+
+          <h3 class="skills__subtitle">Database</h3>
+          <div class="skills__list">
+            <span class="skills__name">My SQL</span>
           </div>
         </div>
 
@@ -204,60 +220,47 @@
 
       <div class="portfolio__container bd-grid">
 
-        <article class="portfolio__img doodle-card">
-          <img src="img/work1.png" alt="">
+        <article class="portfolio__img doodle-card portfolio-card" tabindex="0" role="button" data-title="PromptLab" data-summary="AI-powered prompt improver for shaping better prompts quickly." data-description="PromptLab helps users refine, test, and improve prompts with a polished interface and a faster workflow for creative and technical tasks." data-link="https://github.com/Rajavarmang/promplab">
+          <img src="img/work1.png" alt="PromptLab project preview">
           <div class="portfolio__description">
             <p class="portfolio__desc-title">PromptLab</p>
             <p class="portfolio__desc-text">AI powered prompt improver</p>
-            <a href="https://github.com/Rajavarmang/promplab" class="portfolio__desc-link" target="_blank" rel="noopener noreferrer">View details</a>
+            <button type="button" class="portfolio__desc-link portfolio__trigger">View details</button>
           </div>
         </article>
 
-        <article class="portfolio__img doodle-card">
-          <img src="img/work2.png" alt="">
+        <article class="portfolio__img doodle-card portfolio-card" tabindex="0" role="button" data-title="NotebookLM Replica" data-summary="A notebook-style AI experience built with LangChain." data-description="NotebookLM Replica brings together document-based AI interactions, structured note-taking, and a clean interface for exploring ideas and information." data-link="https://github.com/Rajavarmang/notebooklm-replica-langchain">
+          <img src="img/work2.png" alt="NotebookLM Replica project preview">
           <div class="portfolio__description">
             <p class="portfolio__desc-title">NotebookLM Replica</p>
             <p class="portfolio__desc-text">AI-powered notebook using LangChain</p>
-            <a href="https://github.com/Rajavarmang/notebooklm-replica-langchain" class="portfolio__desc-link" target="_blank" rel="noopener noreferrer">View details</a>
+            <button type="button" class="portfolio__desc-link portfolio__trigger">View details</button>
           </div>
         </article>
 
-        <article class="portfolio__img doodle-card">
-          <img src="img/work3.jpg" alt="">
+        <article class="portfolio__img doodle-card portfolio-card" tabindex="0" role="button" data-title="Personal Blog" data-summary="A personal blog for sharing design learning and progress updates." data-description="This blog captures my daily Figma learning journey, design notes, and personal milestones in a simple and engaging format." data-link="https://learning-figma-blog.vercel.app/">
+          <img src="img/work3.jpg" alt="Personal Blog project preview">
           <div class="portfolio__description">
             <p class="portfolio__desc-title">Personal Blog</p>
             <p class="portfolio__desc-text">tracking my daily figma learning progress</p>
-            <a href="https://learning-figma-blog.vercel.app/" class="portfolio__desc-link">View details</a>
+            <button type="button" class="portfolio__desc-link portfolio__trigger">View details</button>
           </div>
         </article>
 
-        <article class="portfolio__img doodle-card">
-          <img src="img/work4.jpg" alt="">
-          <div class="portfolio__description">
-            <p class="portfolio__desc-title">Project 4</p>
-            <p class="portfolio__desc-text">Coming soon</p>
-            <a href="#" class="portfolio__desc-link">View details</a>
-          </div>
-        </article>
+      </div>
 
-        <article class="portfolio__img doodle-card">
-          <img src="img/work5.jpg" alt="">
-          <div class="portfolio__description">
-            <p class="portfolio__desc-title">Project 5</p>
-            <p class="portfolio__desc-text">Coming soon</p>
-            <a href="#" class="portfolio__desc-link">View details</a>
+      <div id="portfolioLightbox" class="portfolio-lightbox" aria-hidden="true">
+        <div class="portfolio-lightbox__backdrop" data-close="true"></div>
+        <div class="portfolio-lightbox__box" role="dialog" aria-modal="true" aria-labelledby="portfolioLightboxTitle">
+          <button class="portfolio-lightbox__close" aria-label="Close">×</button>
+          <div class="portfolio-lightbox__content">
+            <p class="portfolio-lightbox__eyebrow">Project Highlight</p>
+            <h3 id="portfolioLightboxTitle" class="portfolio-lightbox__title">Project Title</h3>
+            <p id="portfolioLightboxSummary" class="portfolio-lightbox__summary"></p>
+            <p id="portfolioLightboxDescription" class="portfolio-lightbox__description"></p>
+            <a id="portfolioLightboxViewBtn" class="portfolio-lightbox__view" href="#" target="_blank" rel="noopener noreferrer">View Project</a>
           </div>
-        </article>
-
-        <article class="portfolio__img doodle-card">
-          <img src="img/work6.jpg" alt="">
-          <div class="portfolio__description">
-            <p class="portfolio__desc-title">Project 6</p>
-            <p class="portfolio__desc-text">Coming soon</p>
-            <a href="#" class="portfolio__desc-link">View details</a>
-          </div>
-        </article>
-
+        </div>
       </div>
     </section>
 
@@ -346,30 +349,15 @@
       }
     });
 
-    /* Header hide/show on scroll */
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    function updateHeaderVisibility() {
-      if (!header) return;
-
-      const currentScrollY = window.scrollY;
-      const shouldHide = currentScrollY > 80 && currentScrollY > lastScrollY;
-
-      header.classList.toggle("is-hidden", shouldHide);
-      lastScrollY = currentScrollY;
-      ticking = false;
-    }
-
-    function handleScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(updateHeaderVisibility);
-        ticking = true;
+    /* Keep the header visible while scrolling */
+    function keepHeaderVisible() {
+      if (header) {
+        header.classList.remove("is-hidden");
       }
     }
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    updateHeaderVisibility();
+    window.addEventListener("scroll", keepHeaderVisible, { passive: true });
+    keepHeaderVisible();
 
     /* Typewriter for HELLO */
     const helloText = "HI " + "\n" + "I'M RAJAVARMAN";
@@ -555,9 +543,69 @@
       roleIndex = (roleIndex + 1) % roles.length;
     }
 
+    function initPortfolioLightbox() {
+      const cards = Array.from(document.querySelectorAll('.portfolio-card'));
+      const lightbox = document.getElementById('portfolioLightbox');
+      const closeBtn = lightbox?.querySelector('.portfolio-lightbox__close');
+      const backdrop = lightbox?.querySelector('.portfolio-lightbox__backdrop');
+      const titleEl = document.getElementById('portfolioLightboxTitle');
+      const summaryEl = document.getElementById('portfolioLightboxSummary');
+      const descriptionEl = document.getElementById('portfolioLightboxDescription');
+      const viewBtn = document.getElementById('portfolioLightboxViewBtn');
+
+      if (!lightbox || !titleEl || !summaryEl || !descriptionEl || !viewBtn) return;
+
+      function openLightbox(card) {
+        titleEl.textContent = card.dataset.title || 'Project';
+        summaryEl.textContent = card.dataset.summary || '';
+        descriptionEl.textContent = card.dataset.description || '';
+        viewBtn.href = card.dataset.link || '#';
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+      }
+
+      cards.forEach((card) => {
+        const openFromCard = (event) => {
+          if (event.type === 'keydown' && !(event.key === 'Enter' || event.key === ' ')) {
+            return;
+          }
+          event.preventDefault();
+          openLightbox(card);
+        };
+
+        card.addEventListener('click', openFromCard);
+        card.addEventListener('keydown', openFromCard);
+      });
+
+      document.querySelectorAll('.portfolio__trigger').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          const card = button.closest('.portfolio-card');
+          if (card) {
+            openLightbox(card);
+          }
+        });
+      });
+
+      closeBtn?.addEventListener('click', closeLightbox);
+      backdrop?.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeLightbox();
+        }
+      });
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       typeHello();
       initNavBall();
+      initPortfolioLightbox();
       rotateRole();
       setInterval(rotateRole, 2200);
     });
