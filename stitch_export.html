@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rajavarman - Portfolio</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;family=Patrick+Hand&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#004881",
+                      "inverse-surface": "#2d3137",
+                      "on-secondary-fixed-variant": "#005140",
+                      "secondary": "#006b55",
+                      "secondary-container": "#6dfad2",
+                      "surface-container-highest": "#e0e2eb",
+                      "on-secondary-container": "#00725b",
+                      "on-secondary-fixed": "#002018",
+                      "tertiary-fixed-dim": "#ffb687",
+                      "surface-container": "#ebeef6",
+                      "on-tertiary-fixed": "#311300",
+                      "on-background": "#181c22",
+                      "secondary-fixed": "#6dfad2",
+                      "surface-bright": "#f8f9ff",
+                      "tertiary-fixed": "#ffdbc7",
+                      "primary-container": "#0077ce",
+                      "on-secondary": "#ffffff",
+                      "surface-container-high": "#e5e8f0",
+                      "on-tertiary-container": "#fffbff",
+                      "secondary-fixed-dim": "#4bddb7",
+                      "on-primary": "#ffffff",
+                      "primary": "#005ea5",
+                      "primary-fixed-dim": "#a2c9ff",
+                      "tertiary": "#934700",
+                      "background": "#f8f9ff",
+                      "on-primary-container": "#fdfcff",
+                      "error": "#ba1a1a",
+                      "inverse-primary": "#a2c9ff",
+                      "on-surface-variant": "#404752",
+                      "inverse-on-surface": "#eef0f9",
+                      "tertiary-container": "#b85a00",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-variant": "#e0e2eb",
+                      "surface-dim": "#d7dae2",
+                      "outline-variant": "#c0c7d4",
+                      "surface": "#f8f9ff",
+                      "surface-tint": "#0060a9",
+                      "outline": "#707784",
+                      "on-tertiary-fixed-variant": "#733600",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f1f3fc",
+                      "on-surface": "#181c22",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#001c38",
+                      "primary-fixed": "#d3e4ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "margin-mobile": "16px",
+                      "container-max": "1100px",
+                      "gutter": "24px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Montserrat"
+                      ],
+                      "display-lg-mobile": [
+                              "Patrick Hand"
+                      ],
+                      "headline-md": [
+                              "Patrick Hand"
+                      ],
+                      "body-md": [
+                              "Montserrat"
+                      ],
+                      "body-lg": [
+                              "Montserrat"
+                      ],
+                      "headline-sm": [
+                              "Patrick Hand"
+                      ],
+                      "display-lg": [
+                              "Patrick Hand"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        /* Doodle Aesthetic Styles */
+        body {
+            background-color: #f8f9ff;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .doodle-border {
+            border: 2px solid #181c22;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            background-color: #ffffff;
+        }
+
+        .doodle-shadow {
+            box-shadow: 4px 4px 0px 0px #181c22;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .doodle-hover:hover {
+            transform: rotate(-1deg) scale(1.02);
+            box-shadow: 8px 8px 0px 0px #181c22;
+        }
+
+        .doodle-btn {
+            border: 2px solid #181c22;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            box-shadow: 4px 4px 0px 0px #181c22;
+            transition: all 0.2s;
+        }
+
+        .doodle-btn:hover {
+            transform: translateY(-2px) rotate(1deg);
+            box-shadow: 6px 6px 0px 0px #181c22;
+        }
+
+        .floating-doodle {
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* SVG Doodle Icons Base */
+        .svg-doodle path {
+            stroke: #2D3436;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md relative overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 bg-surface border-b-2 border-on-background shadow-[4px_4px_0px_0px_rgba(24,28,34,1)] w-full">
+<nav class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="text-headline-md font-headline-md text-primary italic hover:rotate-1 hover:scale-105 transition-transform duration-200" href="#">Rajavarman</a>
+<ul class="hidden md:flex items-center gap-6">
+<li><a class="text-label-md font-label-md text-primary border-b-2 border-primary underline decoration-2 underline-offset-4 -rotate-1 transition-all inline-block hover:rotate-1 hover:scale-105" href="#home">Home</a></li>
+<li><a class="text-label-md font-label-md text-on-surface-variant hover:rotate-1 hover:scale-105 transition-transform duration-200 inline-block" href="#about">About</a></li>
+<li><a class="text-label-md font-label-md text-on-surface-variant hover:rotate-1 hover:scale-105 transition-transform duration-200 inline-block" href="#skills">Skills</a></li>
+<li><a class="text-label-md font-label-md text-on-surface-variant hover:rotate-1 hover:scale-105 transition-transform duration-200 inline-block" href="#portfolio">Portfolio</a></li>
+<li><a class="text-label-md font-label-md text-on-surface-variant hover:rotate-1 hover:scale-105 transition-transform duration-200 inline-block" href="#certificates">Certificates</a></li>
+<li><a class="text-label-md font-label-md text-on-surface-variant hover:rotate-1 hover:scale-105 transition-transform duration-200 inline-block" href="#contact">Contact</a></li>
+</ul>
+<a class="hidden md:inline-flex doodle-btn bg-primary text-on-primary px-6 py-2 text-label-md font-label-md" href="#contact">Hire Me</a>
+<button aria-label="Menu" class="md:hidden p-2 doodle-btn bg-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+</header>
+<!-- Floating Background Doodles -->
+<div aria-hidden="true" class="absolute inset-0 overflow-hidden pointer-events-none">
+<!-- Laptop -->
+<svg class="floating-doodle absolute top-32 left-[10%] w-24 h-24 svg-doodle" viewbox="0 0 100 100">
+<rect height="40" rx="2" width="60" x="20" y="30"></rect>
+<path d="M10 75 h80 M30 75 v5 h40 v-5"></path>
+</svg>
+<!-- Code -->
+<svg class="floating-doodle absolute top-64 right-[15%] w-16 h-16 svg-doodle" style="animation-delay: 1s;" viewbox="0 0 100 100">
+<path d="M30 20 L10 50 L30 80 M70 20 L90 50 L70 80 M60 10 L40 90"></path>
+</svg>
+<!-- Coffee -->
+<svg class="floating-doodle absolute top-[40%] left-[5%] w-20 h-20 svg-doodle" style="animation-delay: 2s;" viewbox="0 0 100 100">
+<path d="M30 40 v30 a20 20 0 0 0 40 0 v-30 h-40 M70 50 h10 a10 10 0 0 0 0 -20 h-10 M40 30 c0 -10 -10 -15 -10 -25 M55 30 c0 -10 -10 -15 -10 -25"></path>
+</svg>
+</div>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-[819px] flex flex-col md:flex-row items-center gap-12" id="home">
+<div class="flex-1 z-10">
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg mb-4 text-on-background">
+                Hi, I'm <span class="text-primary inline-block transform -rotate-2">Rajavarman</span>
+</h1>
+<h2 class="text-headline-md font-headline-md text-on-surface-variant mb-6">Full Stack Developer</h2>
+<p class="text-body-lg font-body-lg text-outline mb-8 max-w-lg">
+                Crafting digital experiences with code and creativity. I build scalable applications with a focus on clean architecture and intuitive user interfaces.
+            </p>
+<div class="flex gap-4">
+<a class="doodle-btn bg-primary text-on-primary px-8 py-3 text-label-md font-label-md inline-block" href="#portfolio">View My Work</a>
+<a class="doodle-btn bg-surface text-on-background px-8 py-3 text-label-md font-label-md inline-block" href="#contact">Get In Touch</a>
+</div>
+</div>
+<div class="flex-1 flex justify-center z-10">
+<div class="doodle-border doodle-shadow p-2 bg-surface rotate-2">
+<img class="w-64 h-64 md:w-80 md:h-80 object-cover border-2 border-on-background grayscale hover:grayscale-0 transition-all duration-500 rounded-lg" data-alt="A stylized portrait placeholder image for Rajavarman's portfolio. The image should feature a friendly, professional young developer working in a bright, modern creative workspace. The lighting is soft and natural, enhancing a light-mode aesthetic with crisp whites, charcoal blacks, and energetic primary blue accents. The mood is approachable and creative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7-jhMffyDBiXYWni1R1-D3UrTRaBK9FG8PTVRIbtsnbSL-fUtlkTYntxKbboAT6mgkSsRXOLrT9ln0TCRkq8ILyFm_a_eJAMJK4RutmhBa-1mbRF3RXYgzmdC-8J6OedO1xL5TkK-ZKBzZXguUD_cdTTrQzn-FySkP4VmreYlW37Q9q0UgeKufWGctBwafmp_zvCmVN7ORo1552gaFhvnky6BL1D8KUsWh2apIpXty_IDMy0o9yYP0DlOQztqQ5nF1OxUkbvC7A"/>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container border-t-2 border-on-background mt-32">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-gutter max-w-container-max mx-auto gap-unit">
+<p class="text-body-md font-body-md text-secondary">© 2024 Rajavarman. Hand-drawn with code.</p>
+<div class="flex gap-4">
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">GitHub</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">LinkedIn</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Twitter</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Email</a>
+</div>
+<div class="text-headline-sm font-headline-sm text-on-surface">Rajavarman</div>
+</div>
+</footer>
+</body></html>

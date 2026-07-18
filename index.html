@@ -1,96 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rajavarman | Full Stack Developer</title>
+  <meta name="description" content="Rajavarman – Full Stack Developer. Building high-performance, responsive web applications with clean code and modern architecture." />
 
-  <!-- GOOGLE FONTS -->
+  <!-- GOOGLE FONTS: Outfit + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- BOX ICONS -->
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet">
 
-  <!-- TABLER ICONS (for floating doodle overlay) -->
+  <!-- TABLER ICONS (floating overlay + nav ball) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
-  <title>Doodle Portfolio</title>
+
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- ===== FLOATING DOODLE OVERLAY ===== -->
   <div class="doodle-overlay" aria-hidden="true">
-    <i class="ti ti-device-laptop" style="top:72%;  left:88%;  font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.884)"></i>
-    <i class="ti ti-device-laptop" style="top:72%;  left:60%;  font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-device-laptop" style="top:50%;  left:80%;  font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-mouse"         style="top:60%; left:25%; font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.938)"></i>
-    <i class="ti ti-star"          style="top:15%; left:92%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-brand-github"  style="top:48%; left:15%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-keyboard"      style="top:40%; left:30%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-coffee"        style="top:45%; left:3%;  font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.932)"></i>
-    <i class="ti ti-trophy"        style="top:52%; left:94%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-code"          style="top:75%; left:6%;  font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-code"          style="top:75%; left:20%;  font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-arrow-right"   style="top:82%; left:91%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-books"         style="top:10%; left:60%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-rocket"        style="top:88%; left:20%; font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.938)"></i>
-    <i class="ti ti-bulb"          style="top:30%; left:10%;  font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.952)"></i>
-    <i class="ti ti-pencil"        style="top:35%; left:90%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-pencil"        style="top:30%; left:80%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-brackets"      style="top:65%; left:88%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-cpu"           style="top:92%; left:78%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-wifi"          style="top:10%; left:78%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-moon"          style="top:60%; left:15%;  font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-device-gamepad" style="top:5%; left:18%; font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.945)"></i>
-    <i class="ti ti-star"          style="top:90%; left:5%;  font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-laptop"        style="top:28%; left:4%;  font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-hierarchy"        style="top:42%; left:95%; font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.938)"></i>
-    <i class="ti ti-trophy"        style="top:78%; left:70%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-terminal"      style="top:30%;  left:40%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-git-branch"    style="top:25%; left:50%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-database"      style="top:55%; left:50%; font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.932)"></i>
-    <i class="ti ti-cloud"         style="top:12%; left:35%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-settings"      style="top:75%; left:30%; font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.945)"></i>
-    <i class="ti ti-palette"       style="top:68%; left:45%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-chart-bar"     style="top:80%; left:52%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-message"       style="top:95%; left:40%; font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.829)"></i>
-    <i class="ti ti-search"        style="top:33%; left:52%; font-size:40px; opacity:0.8;"></i>
-    <i class="ti ti-player-play"   style="top:45%; left:38%; font-size:40px; opacity:0.8;color:rgba(255, 166, 0, 0.925)"></i>
-    <i class="ti ti-arrows-transfer-up" style="top:20%; left:25%; font-size:40px; opacity:0.8;"></i>
+    <i class="ti ti-device-laptop"      style="top:75%;left:95%;font-size:40px;"></i>
+    <i class="ti ti-device-laptop"      style="top:72%;left:60%;font-size:40px;"></i>
+    <i class="ti ti-device-laptop"      style="top:50%;left:80%;font-size:40px;"></i>
+    <i class="ti ti-mouse"              style="top:70%;left:10%;font-size:40px;"></i>
+    <i class="ti ti-star"               style="top:15%;left:92%;font-size:40px;"></i>
+    <i class="ti ti-brand-github"       style="top:60%;left:38%;font-size:40px;"></i>
+    <i class="ti ti-keyboard"           style="top:30%;left:30%;font-size:40px;"></i>
+    <i class="ti ti-coffee"             style="top:45%;left:3%; font-size:40px;"></i>
+    <i class="ti ti-trophy"             style="top:58%;left:90%;font-size:40px;"></i>
+    <i class="ti ti-code"               style="top:15%;left:6%; font-size:40px;"></i>
+    <i class="ti ti-code"               style="top:75%;left:20%;font-size:40px;"></i>
+    <i class="ti ti-arrow-right"        style="top:82%;left:91%;font-size:40px;"></i>
+    <i class="ti ti-books"              style="top:10%;left:60%;font-size:40px;"></i>
+    <i class="ti ti-rocket"             style="top:88%;left:20%;font-size:40px;"></i>
+    <i class="ti ti-bulb"               style="top:30%;left:10%;font-size:40px;"></i>
+    <i class="ti ti-pencil"             style="top:35%;left:90%;font-size:40px;"></i>
+    <i class="ti ti-pencil"             style="top:30%;left:80%;font-size:40px;"></i>
+    <i class="ti ti-brackets"           style="top:65%;left:78%;font-size:40px;"></i>
+    <i class="ti ti-cpu"                style="top:92%;left:78%;font-size:40px;"></i>
+    <i class="ti ti-wifi"               style="top:10%;left:78%;font-size:40px;"></i>
+    <i class="ti ti-device-gamepad"     style="top:5%; left:18%;font-size:40px;"></i>
+    <i class="ti ti-star"               style="top:90%;left:5%; font-size:40px;"></i>
+    <i class="ti ti-laptop"             style="top:28%;left:4%; font-size:40px;"></i>
+    <i class="ti ti-hierarchy"          style="top:42%;left:95%;font-size:40px;"></i>
+    <i class="ti ti-trophy"             style="top:78%;left:70%;font-size:40px;"></i>
+    <i class="ti ti-terminal"           style="top:30%;left:40%;font-size:40px;"></i>
+    <i class="ti ti-git-branch"         style="top:25%;left:50%;font-size:40px;"></i>
+    <i class="ti ti-database"           style="top:55%;left:50%;font-size:40px;"></i>
+    <i class="ti ti-cloud"              style="top:12%;left:35%;font-size:40px;"></i>
+    <i class="ti ti-settings"           style="top:75%;left:30%;font-size:40px;"></i>
+    <i class="ti ti-palette"            style="top:68%;left:45%;font-size:40px;"></i>
+    <i class="ti ti-chart-bar"          style="top:90%;left:59%;font-size:40px;"></i>
+    <i class="ti ti-message"            style="top:95%;left:40%;font-size:40px;"></i>
+    <i class="ti ti-search"             style="top:35%;left:55%;font-size:40px;"></i>
+    <i class="ti ti-arrows-transfer-up" style="top:20%;left:25%;font-size:40px;"></i>
   </div>
 
   <!-- ===== HEADER ===== -->
-  <header class="l-header">
-    <nav class="nav bd-grid">
-      <div class="nav-left">
-        <a href="#" class="nav__logo">RAJAVARMAN</a>
-      </div>
+  <header class="l-header" id="l-header">
+    <nav class="nav">
+      <a href="#" class="nav__logo">RAJAVARMAN</a>
 
       <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">
-          <li class="nav__item"><a href="#home"      class="nav__link active">Home</a></li>
-          <li class="nav__item"><a href="#about"     class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#skills"    class="nav__link">Skills</a></li>
-          <li class="nav__item"><a href="#portfolio" class="nav__link">Portfolio</a></li>
-          <li class="nav__item"><a href="#contact"   class="nav__link">Contact</a></li>
-           <li class="nav__item"><a href="#certificates"   class="nav__link">Certificates</a></li>
+          <li><a href="#home"         class="nav__link active">Home</a></li>
+          <li><a href="#about"        class="nav__link">About</a></li>
+          <li><a href="#skills"       class="nav__link">Skills</a></li>
+          <li><a href="#portfolio"    class="nav__link">Portfolio</a></li>
+          <li><a href="#certificates" class="nav__link">Certificates</a></li>
+          <li><a href="#contact"      class="nav__link">Contact</a></li>
         </ul>
       </div>
 
-      <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false">
-        <i class='bx bx-menu'></i>
+      <a href="#contact" class="nav__cta">Let's Talk</a>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-controls="nav-menu" aria-expanded="false">
+        <i class="bx bx-menu"></i>
       </button>
     </nav>
   </header>
 
   <main class="l-main">
 
-    <!-- ===== HOME ===== -->
-    <section class="home" id="home">
-      <div class="home__container bd-grid">
+    <!-- ===== HOME / HERO ===== -->
+    <section class="home section" id="home">
+      <div class="bd-grid home__container">
         <div>
           <h1 class="home__title">
             <span id="helloType"></span><span class="caret">|</span>
@@ -98,110 +97,144 @@
           <div class="home__role-card">
             <p class="home__role" id="roleText" aria-live="polite">Full Stack Developer</p>
           </div>
-
-           <div class="home__cta-group">
-            <a href="#contact" class="home__cta">Let’s work together</a>
+          <p class="home__text">Building high-performance, responsive web applications with a focus on clean code, modern architecture, and exceptional user experiences.</p>
+          <div class="home__cta-group">
+            <a href="#portfolio" class="home__cta">View My Work</a>
           </div>
         </div>
+
         <div class="home__img-wrapper">
-        <img src="img/profil.png" alt="" class="home__img">
+          <div class="home__img-ring">
+            <div class="home__img-inner">
+              <img src="img/profil.png" alt="Rajavarman" class="home__img">
+            </div>
+          </div>
         </div>
+
         <a href="#about" class="home__down">
           <p class="home__tagline">Learn  |  Code  |  Solve  |  Build  |  Grow</p>
-          <span class="home__tagline-underline" aria-hidden="true"></span>
           <span class="down-arrow">⬇</span>
           <span class="down-text">dive down</span>
         </a>
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ===== ABOUT ===== -->
     <section class="about section" id="about">
-      <h2 class="section-title">About</h2>
+      <div class="about__container">
+        <h2 class="section-title">About Me</h2>
+        <div class="section-accent"></div>
 
-      <div class="about__container bd-grid">
-        <div class="about__img doodle-box">
-          <img src="img/profile2.png" alt="">
-        </div>
+        <div class="about__grid">
+          <!-- Left: about image + social -->
+          <div class="about__img-wrap glass-panel">
+            <div class="about__avatar">
+              <img src="img/profile2.png" alt="About Rajavarman">
+            </div>
+            <div style="padding:1.5rem 1.5rem 1rem;">
+              <h3 class="about__subtitle">I'm Rajavarman</h3>
+              <span class="about__profession">Full-stack developer</span>
+              <div class="about__social">
+                <a href="https://www.linkedin.com/in/rajavarman-g" class="about__social-icon" target="_blank"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/Rajavarmang"            class="about__social-icon" target="_blank"><i class="bx bxl-github"></i></a>
+                <a href="https://dribbble.com/rajavarman-g"        class="about__social-icon" target="_blank"><i class="bx bxl-dribbble"></i></a>
+              </div>
+            </div>
+          </div>
 
-        <div class="about__content doodle-box">
-          <h2 class="about__subtitle">I'm Rajavarman</h2>
-          <span class="about__profession">Full-stack developer</span>
-          <pre class="about__text">
-            CS student <b style="color: rgba(9, 143, 140, 0.963);">|</b> Fresher <b style="color: rgba(9, 143, 140, 0.963);">|</b> Full-stack developer.
-            I'm a passionate Frontend Developer with a strong interest in building responsive,
-            user-friendly, and visually appealing web applications. 
-            I enjoy turning creative ideas into functional interfaces using HTML, CSS, and JavaScript.
-            
-            <b style="color: rgba(245, 112, 11, 0.784); font-size:large">CURRENTLY LEARNING:</b>  
-             1. Advanced python concepts with oops.
-             2. backend framework Django.
-            
-            <b style="color: rgba(245, 112, 11, 0.784); font-size:large">GOAL:</b>To grow as a full-stack web developer and contribute to impactful digital projects.
-          </pre>
+          <!-- Right: two stacked glass cards -->
+          <div class="about__side">
+            <div class="about__side-card glass-panel">
+              <div class="about__icon"><i class="ti ti-user"></i></div>
+              <pre class="about__text">CS student <b style="color:#4cd7f6;">|</b> Fresher <b style="color:#4cd7f6;">|</b> Full-stack developer.
+I'm a passionate Frontend Developer with a strong interest in building responsive,
+user-friendly, and visually appealing web applications.
+I enjoy turning creative ideas into functional interfaces using HTML, CSS, and JavaScript.
 
-          <div class="about__social">
-            <a href="https://www.linkedin.com/in/rajavarman-g" class="about__social-icon" target="_blank"><i class="bx bxl-linkedin"></i></a>
-            <a href="https://github.com/Rajavarmang"            class="about__social-icon" target="_blank"><i class="bx bxl-github"></i></a>
-            <a href="https://dribbble.com/rajavarman-g"        class="about__social-icon" target="_blank"><i class="bx bxl-dribbble"></i></a>
+<b style="color:#ffb783;font-size:1rem;">CURRENTLY LEARNING:</b>
+  1. Advanced Python concepts with OOPs.
+  2. Backend framework Django.
+
+<b style="color:#ffb783;font-size:1rem;">GOAL:</b> To grow as a full-stack web developer and contribute to impactful digital projects.</pre>
+            </div>
+
+            <div class="about__side-card glass-panel" style="display:flex;gap:1rem;flex-wrap:wrap;">
+              <div>
+                <div class="about__side-title">Currently Learning</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem;">
+                  <span class="skills__name skills__name--secondary">Python</span>
+                  <span class="skills__name skills__name--secondary">Django</span>
+                  <span class="skills__name skills__name--secondary">System Design</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- ===== SKILLS ===== -->
     <section class="skills section" id="skills">
-      <h2 class="section-title">Skills</h2>
+      <div class="skills__container">
+        <h2 class="section-title" style="text-align:center;">Expertise</h2>
+        <div class="section-accent" style="margin:0 auto 3rem;"></div>
 
-      <div class="skills__container bd-grid">
-        <div class="skills__box doodle-box">
-          <h3 class="skills__subtitle">Programming Language</h3>
-          <div class="skills__list">
-            <span class="skills__name">HTML</span>
-            <span class="skills__name">CSS</span>
-            <span class="skills__name">Java Script</span>
-            <span class="skills__name">Python</span>
-            <span class="skills__name">Flask</span>
+        <div class="skills__grid">
+          <!-- Programming -->
+          <div class="glass-panel skills__card">
+            <div class="skills__card-icon skills__card-icon--primary"><i class="ti ti-code"></i></div>
+            <h3 class="skills__subtitle">Programming</h3>
+            <div class="skills__list">
+              <span class="skills__name skills__name--primary">HTML</span>
+              <span class="skills__name skills__name--primary">CSS</span>
+              <span class="skills__name skills__name--primary">JavaScript</span>
+              <span class="skills__name skills__name--primary">Python</span>
+              <span class="skills__name skills__name--primary">Flask</span>
+            </div>
           </div>
 
-          <h3 class="skills__subtitle">Tools</h3>
-          <div class="skills__list">
-            <span class="skills__name">Git</span>
-            <span class="skills__name">GitHub</span>
-            <span class="skills__name">Google Colab</span>
-            <span class="skills__name">VS Code</span>
+          <!-- Tools -->
+          <div class="glass-panel skills__card">
+            <div class="skills__card-icon skills__card-icon--tertiary"><i class="ti ti-tools"></i></div>
+            <h3 class="skills__subtitle">Tools &amp; DevOps</h3>
+            <div class="skills__list">
+              <span class="skills__name skills__name--tertiary">Git</span>
+              <span class="skills__name skills__name--tertiary">GitHub</span>
+              <span class="skills__name skills__name--tertiary">VS Code</span>
+              <span class="skills__name skills__name--tertiary">Google Colab</span>
+            </div>
           </div>
 
-          <h3 class="skills__subtitle">Database</h3>
-          <div class="skills__list">
-            <span class="skills__name">My SQL</span>
+          <!-- Database -->
+          <div class="glass-panel skills__card">
+            <div class="skills__card-icon skills__card-icon--secondary"><i class="ti ti-database"></i></div>
+            <h3 class="skills__subtitle">Database</h3>
+            <div class="skills__list">
+              <span class="skills__name skills__name--secondary">MySQL</span>
+              <span class="skills__name skills__name--secondary">Relational Design</span>
+            </div>
           </div>
-        </div>
-
-        <div class="skills__img doodle-box">
-          <img src="img/skill.png" alt="">
         </div>
       </div>
     </section>
 
-    <!-- CERTIFICATES -->
+    <!-- ===== CERTIFICATES ===== -->
     <section class="certificates section" id="certificates">
-      <h2 class="section-title doodle-heading">Certificates
-        <span class="hand-underline" aria-hidden="true"></span>
-      </h2>
-
-      <div class="certificates__container bd-grid">
+      <div class="certificates__container">
+        <h2 class="section-title">Certificates</h2>
+        <div class="section-accent"></div>
         <p class="certificates__intro">Selected certifications highlighting skills and learning milestones.</p>
 
         <div id="certGrid" class="cert-grid" aria-live="polite">
-          <!-- Certificate cards rendered by certificates.js -->
+          <!-- Rendered by certificates.js -->
         </div>
 
+        <!-- Cert Lightbox -->
         <div id="certLightbox" class="cert-lightbox" aria-hidden="true">
           <div class="cert-lightbox__backdrop" data-close="true"></div>
           <div class="cert-lightbox__box" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
             <button class="cert-lightbox__close" aria-label="Close">×</button>
-            <header class="cert-lightbox__header">
+            <header>
               <h3 id="lightboxTitle" class="cert-lightbox__issuer">Issuer Name</h3>
               <p class="cert-lightbox__meta"><span class="cert-lightbox__title">Certificate Title</span> — <time class="cert-lightbox__date">Month YYYY</time></p>
             </header>
@@ -214,118 +247,169 @@
       </div>
     </section>
 
-    <!-- PORTFOLIO -->
+    <!-- ===== PORTFOLIO ===== -->
     <section class="portfolio section" id="portfolio">
-      <h2 class="section-title">Portfolio</h2>
+      <div class="portfolio__container">
+        <h2 class="section-title">Selected Projects</h2>
+        <div class="section-accent"></div>
 
-      <div class="portfolio__container bd-grid">
+        <div class="portfolio__grid">
 
-        <article class="portfolio__img doodle-card portfolio-card" tabindex="0" role="button" data-title="PromptLab" data-summary="AI-powered prompt improver for shaping better prompts quickly." data-description="PromptLab helps users refine, test, and improve prompts with a polished interface and a faster workflow for creative and technical tasks." data-link="https://github.com/Rajavarmang/promplab">
-          <img src="img/work1.png" alt="PromptLab project preview">
-          <div class="portfolio__description">
-            <p class="portfolio__desc-title">PromptLab</p>
-            <p class="portfolio__desc-text">AI powered prompt improver</p>
-            <button type="button" class="portfolio__desc-link portfolio__trigger">View details</button>
-          </div>
-        </article>
+          <article class="portfolio__img portfolio-card" tabindex="0" role="button"
+            data-title="PromptLab"
+            data-summary="AI-powered prompt improver for shaping better prompts quickly."
+            data-description="PromptLab helps users refine, test, and improve prompts with a polished interface and a faster workflow for creative and technical tasks."
+            data-link="https://github.com/Rajavarmang/promplab">
+            <div class="portfolio__thumb"><img src="img/work1.png" alt="PromptLab preview"></div>
+            <div class="portfolio__description">
+              <p class="portfolio__desc-title">PromptLab</p>
+              <p class="portfolio__desc-text">AI-powered prompt improver — React &amp; Flask</p>
+              <div class="portfolio__desc-footer">
+                <button type="button" class="portfolio__desc-link portfolio__trigger">View details <i class="ti ti-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
 
-        <article class="portfolio__img doodle-card portfolio-card" tabindex="0" role="button" data-title="NotebookLM Replica" data-summary="A notebook-style AI experience built with LangChain." data-description="NotebookLM Replica brings together document-based AI interactions, structured note-taking, and a clean interface for exploring ideas and information." data-link="https://github.com/Rajavarmang/notebooklm-replica-langchain">
-          <img src="img/work2.png" alt="NotebookLM Replica project preview">
-          <div class="portfolio__description">
-            <p class="portfolio__desc-title">NotebookLM Replica</p>
-            <p class="portfolio__desc-text">AI-powered notebook using LangChain</p>
-            <button type="button" class="portfolio__desc-link portfolio__trigger">View details</button>
-          </div>
-        </article>
+          <article class="portfolio__img portfolio-card" tabindex="0" role="button"
+            data-title="NotebookLM Replica"
+            data-summary="A notebook-style AI experience built with LangChain."
+            data-description="NotebookLM Replica brings together document-based AI interactions, structured note-taking, and a clean interface for exploring ideas and information."
+            data-link="https://github.com/Rajavarmang/notebooklm-replica-langchain">
+            <div class="portfolio__thumb"><img src="img/work2.png" alt="NotebookLM Replica preview"></div>
+            <div class="portfolio__description">
+              <p class="portfolio__desc-title">NotebookLM Replica</p>
+              <p class="portfolio__desc-text">AI-powered notebook — Python &amp; LangChain</p>
+              <div class="portfolio__desc-footer">
+                <button type="button" class="portfolio__desc-link portfolio__trigger">View details <i class="ti ti-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
 
-        <article class="portfolio__img doodle-card portfolio-card" tabindex="0" role="button" data-title="Personal Blog" data-summary="A personal blog for sharing design learning and progress updates." data-description="This blog captures my daily Figma learning journey, design notes, and personal milestones in a simple and engaging format." data-link="https://learning-figma-blog.vercel.app/">
-          <img src="img/work3.jpg" alt="Personal Blog project preview">
-          <div class="portfolio__description">
-            <p class="portfolio__desc-title">Personal Blog</p>
-            <p class="portfolio__desc-text">tracking my daily figma learning progress</p>
-            <button type="button" class="portfolio__desc-link portfolio__trigger">View details</button>
-          </div>
-        </article>
+          <article class="portfolio__img portfolio-card" tabindex="0" role="button"
+            data-title="Personal Blog"
+            data-summary="A personal blog for sharing design learning and progress updates."
+            data-description="This blog captures my daily Figma learning journey, design notes, and personal milestones in a simple and engaging format."
+            data-link="https://learning-figma-blog.vercel.app/">
+            <div class="portfolio__thumb"><img src="img/work3.jpg" alt="Personal Blog preview"></div>
+            <div class="portfolio__description">
+              <p class="portfolio__desc-title">Personal Blog</p>
+              <p class="portfolio__desc-text">Tracking my daily Figma learning progress</p>
+              <div class="portfolio__desc-footer">
+                <button type="button" class="portfolio__desc-link portfolio__trigger">View details <i class="ti ti-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
 
-      </div>
+        </div>
 
-      <div id="portfolioLightbox" class="portfolio-lightbox" aria-hidden="true">
-        <div class="portfolio-lightbox__backdrop" data-close="true"></div>
-        <div class="portfolio-lightbox__box" role="dialog" aria-modal="true" aria-labelledby="portfolioLightboxTitle">
-          <button class="portfolio-lightbox__close" aria-label="Close">×</button>
-          <div class="portfolio-lightbox__content">
-            <p class="portfolio-lightbox__eyebrow">Project Highlight</p>
-            <h3 id="portfolioLightboxTitle" class="portfolio-lightbox__title">Project Title</h3>
-            <p id="portfolioLightboxSummary" class="portfolio-lightbox__summary"></p>
-            <p id="portfolioLightboxDescription" class="portfolio-lightbox__description"></p>
-            <a id="portfolioLightboxViewBtn" class="portfolio-lightbox__view" href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+        <!-- Portfolio Lightbox -->
+        <div id="portfolioLightbox" class="portfolio-lightbox" aria-hidden="true">
+          <div class="portfolio-lightbox__backdrop" data-close="true"></div>
+          <div class="portfolio-lightbox__box" role="dialog" aria-modal="true" aria-labelledby="portfolioLightboxTitle">
+            <button class="portfolio-lightbox__close" aria-label="Close">×</button>
+            <div class="portfolio-lightbox__content">
+              <p class="portfolio-lightbox__eyebrow">Project Highlight</p>
+              <h3 id="portfolioLightboxTitle" class="portfolio-lightbox__title">Project Title</h3>
+              <p id="portfolioLightboxSummary" class="portfolio-lightbox__summary"></p>
+              <p id="portfolioLightboxDescription" class="portfolio-lightbox__description"></p>
+              <a id="portfolioLightboxViewBtn" class="portfolio-lightbox__view" href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- ===== CONTACT ===== -->
     <section class="contact section" id="contact">
-      <h2 class="section-title">Contact</h2>
+      <div class="contact__container">
+        <h2 class="section-title" style="text-align:center;">Get In Touch</h2>
+        <div class="section-accent" style="margin:0 auto 3rem;"></div>
 
-      <div class="contact__container bd-grid">
-        <div class="contact__row">
-          <div class="contact__info doodle-box">
-            <h3 class="contact__subtitle">EMAIL</h3>
-            <span class="contact__text">rajavarmang1312@gmail.com</span>
+        <div class="contact__wrapper">
+          <div class="contact__glow"></div>
 
-            <h3 class="contact__subtitle">PHONE</h3>
-            <span class="contact__text">+9163790 30469</span>
-
-            <h3 class="contact__subtitle">ADDRESS</h3>
-            <span class="contact__text">udumalpet, tamilnadu, india.</span>
+          <!-- Contact Info -->
+          <div class="contact__info">
+            <div>
+              <h3 class="contact__info-title">Let's build something.</h3>
+              <p class="contact__info-text">Currently open for new opportunities and exciting freelance projects. Reach out and let's discuss how I can help.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:1.25rem;">
+              <div class="contact__item">
+                <div class="contact__item-icon"><i class="ti ti-mail"></i></div>
+                <div>
+                  <p class="contact__subtitle">EMAIL</p>
+                  <span class="contact__text">rajavarmang1312@gmail.com</span>
+                </div>
+              </div>
+              <div class="contact__item">
+                <div class="contact__item-icon"><i class="ti ti-phone"></i></div>
+                <div>
+                  <p class="contact__subtitle">PHONE</p>
+                  <span class="contact__text">+91 63790 30469</span>
+                </div>
+              </div>
+              <div class="contact__item">
+                <div class="contact__item-icon"><i class="ti ti-map-pin"></i></div>
+                <div>
+                  <p class="contact__subtitle">ADDRESS</p>
+                  <span class="contact__text">Udumalpet, Tamil Nadu, India</span>
+                </div>
+              </div>
+            </div>
+            <a href="certificates\Rajavarman_G_Resume.pdf" target="_blank" class="contact__resume-link">
+              <i class="bx bx-file"></i> View Resume
+            </a>
           </div>
 
-          <form action="" class="contact__form doodle-box">
+          <!-- Contact Form -->
+          <form class="contact__form" action="">
             <div class="contact__inputs">
-              <input type="text"  placeholder="Name"    class="contact__input">
-              <input type="email" placeholder="Email"   class="contact__input">
+              <div>
+                <label class="contact__label" for="c-name">Name</label>
+                <input id="c-name" type="text" placeholder="Your name" class="contact__input">
+              </div>
+              <div>
+                <label class="contact__label" for="c-email">Email</label>
+                <input id="c-email" type="email" placeholder="your@email.com" class="contact__input">
+              </div>
             </div>
-            <textarea class="contact__input" placeholder="Message"></textarea>
-            <input type="submit" value="send" class="contact__button">
+            <div>
+              <label class="contact__label" for="c-message">Message</label>
+              <textarea id="c-message" class="contact__input" placeholder="How can I help you?" rows="5"></textarea>
+            </div>
+            <button type="button" class="contact__button">Send Message</button>
           </form>
-        </div>
-
-        <div class="contact__actions">
-          <a href="certificates\Rajavarman_G_Resume.pdf" target="_blank" class="contact__resume-link" aria-label="Open resume" title="Open resume">
-            <i class='bx bx-file'></i>
-          </a>
         </div>
       </div>
     </section>
 
   </main>
 
-
-  <!-- FOOTER -->
-  <footer class="footer section">
-    <div class="footer__container bd-grid">
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__container">
       <div class="footer__data">
-        <h2 class="footer__title" style="color: rgba(9, 143, 140, 0.963);">RAJAVARMAN-G</h2>
-        <p class="footer__text">I'm rajavarman and this is my personal website</p>
+        <h2 class="footer__title">RAJAVARMAN-G</h2>
+        <p class="footer__text">My personal portfolio — built with code &amp; passion.</p>
       </div>
-
       <div class="footer__data">
-        <h2 class="footer__title">EXPLORE</h2>
+        <h2 class="footer__title" style="font-size:1rem;margin-bottom:0.5rem;">EXPLORE</h2>
         <ul>
-          <li><a href="#home"      class="footer__link">Home</a></li>
-          <li><a href="#about"     class="footer__link">About</a></li>
-          <li><a href="#skills"    class="footer__link">Skills</a></li>
-          <li><a href="#portfolio" class="footer__link">Portfolio</a></li>
-          <li><a href="#contact"   class="footer__link">Contact</a></li>
+          <li><a href="#home"         class="footer__link">Home</a></li>
+          <li><a href="#about"        class="footer__link">About</a></li>
+          <li><a href="#skills"       class="footer__link">Skills</a></li>
+          <li><a href="#portfolio"    class="footer__link">Portfolio</a></li>
+          <li><a href="#contact"      class="footer__link">Contact</a></li>
         </ul>
       </div>
-
       <div class="footer__data">
-        <h2 class="footer__title">FOLLOW</h2>
-        <a href="#" class="footer__social"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="footer__social"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="footer__social"><i class="bx bxl-twitter"></i></a>
+        <h2 class="footer__title" style="font-size:1rem;margin-bottom:0.5rem;">FOLLOW</h2>
+        <div>
+          <a href="#" class="footer__social"><i class="bx bxl-linkedin"></i></a>
+          <a href="#" class="footer__social"><i class="bx bxl-github"></i></a>
+          <a href="#" class="footer__social"><i class="bx bxl-twitter"></i></a>
+        </div>
       </div>
     </div>
   </footer>
@@ -333,347 +417,211 @@
   <!-- SCROLL REVEAL -->
   <script src="https://unpkg.com/scrollreveal"></script>
 
-  <!-- MAIN JS -->
+  <!-- CERTIFICATES JS -->
   <script src="certificates.js"></script>
 
   <script>
-    /* Mobile Menu Toggle */
-    const navToggle = document.getElementById("nav-toggle");
-    const navMenu   = document.getElementById("nav-menu");
-    const header    = document.querySelector(".l-header");
+    /* ── Mobile Menu ─────────────────────── */
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu   = document.getElementById('nav-menu');
+    const header    = document.getElementById('l-header');
 
     if (navToggle && navMenu) {
-      const setMenuState = (isOpen) => {
-        navMenu.classList.toggle("show", isOpen);
-        navToggle.classList.toggle("active", isOpen);
-        navToggle.setAttribute("aria-expanded", String(isOpen));
-        if (header) {
-          header.classList.remove("is-hidden");
-        }
+      const setMenuState = (open) => {
+        navMenu.classList.toggle('show', open);
+        navToggle.setAttribute('aria-expanded', String(open));
+        if (header) header.classList.remove('is-hidden');
       };
-
-      navToggle.addEventListener("click", () => {
-        setMenuState(!navMenu.classList.contains("show"));
-      });
-
-      navMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => setMenuState(false));
-      });
-
-      window.addEventListener("resize", () => {
-        if (window.innerWidth > 719) {
-          setMenuState(false);
-        }
-      });
+      navToggle.addEventListener('click', () => setMenuState(!navMenu.classList.contains('show')));
+      navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => setMenuState(false)));
+      window.addEventListener('resize', () => { if (window.innerWidth > 768) setMenuState(false); });
     }
 
-    /* Header hide/show on scroll */
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    function updateHeaderVisibility() {
+    /* ── Header hide/show on scroll ──────── */
+    let lastScrollY = window.scrollY, ticking = false;
+    function updateHeader() {
       if (!header) return;
-
-      const currentScrollY = window.scrollY;
-      const shouldHide = currentScrollY > 80 && currentScrollY > lastScrollY;
-
-      header.classList.toggle("is-hidden", shouldHide);
-      lastScrollY = currentScrollY;
+      const cur = window.scrollY;
+      header.classList.toggle('is-hidden', cur > 80 && cur > lastScrollY);
+      lastScrollY = cur;
       ticking = false;
     }
+    window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(updateHeader); ticking = true; } }, { passive: true });
 
-    function handleScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(updateHeaderVisibility);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    updateHeaderVisibility();
-
-    /* Typewriter for HELLO */
-    const helloText = "HI " + "\n" + "I'M RAJAVARMAN";
-    const helloEl   = document.getElementById("helloType");
-    const roleEl    = document.getElementById("roleText");
-    const roles     = ["Full Stack Developer", "Python & Flask Enthusiast", "UI Explorer"];
-    let i = 0;
-    let roleIndex = 0;
+    /* ── Typewriter ───────────────────────── */
+    const helloText = "HI  I'M  RAJAVARMAN...";
+    const helloEl   = document.getElementById('helloType');
+    const roleEl    = document.getElementById('roleText');
+    const roles     = ['Full Stack Developer', 'Python & Flask Enthusiast', 'UI Explorer'];
+    let i = 0, roleIndex = 0;
 
     function typeHello() {
-      if (i < helloText.length) {
-        helloEl.textContent += helloText.charAt(i);
-        i++;
-        setTimeout(typeHello, 150);
-      } else {
-        setTimeout(() => eraseHello(), 1200);
-      }
+      if (!helloEl) return;
+      if (i < helloText.length) { helloEl.textContent += helloText.charAt(i++); setTimeout(typeHello, 150); }
+      else setTimeout(eraseHello, 1200);
     }
-
     function eraseHello() {
-      if (i > 0) {
-        helloEl.textContent = helloText.substring(0, i - 1);
-        i--;
-        setTimeout(eraseHello, 130);
-      } else {
-        setTimeout(typeHello, 500);
-      }
+      if (!helloEl) return;
+      if (i > 0) { helloEl.textContent = helloText.substring(0, --i); setTimeout(eraseHello, 130); }
+      else setTimeout(typeHello, 500);
     }
-
-    function initNavBall() {
-      const navBall = document.getElementById("navBall");
-      const ballIconEl = document.getElementById("ballIconEl");
-      const navBallItems = Array.from(document.querySelectorAll(".nav-ball-item"));
-      const navTargets = ["home", "about", "skills", "portfolio","certificate","contact"];
-      const navBallIcons = ["ti-home", "ti-user", "ti-tools", "ti-briefcase", "ti-mail"];
-      const itemAngles = [-150, -110, -55, -25, 5,35];
-      const burstRadius = 110;
-      let isDragging = false;
-      let dragStartX = 0;
-      let dragStartY = 0;
-      let ballStartX = 0;
-      let ballStartY = 0;
-
-      function autoOpenNavBall() {
-        // Open on every page visit after the initial layout is ready, so the
-        // menu items can animate out from the ball's actual position.
-        window.requestAnimationFrame(() => {
-          openBallMenu();
-          window.setTimeout(closeBallMenu, 1250);
-        });
-      }
-
-      function nbSwitchIcon(index) {
-        if (!ballIconEl) {
-          console.warn("nbSwitchIcon: ballIconEl is not available");
-          return;
-        }
-        navBall.classList.add("nb-switching");
-        setTimeout(() => {
-          console.log("nbSwitchIcon timeout fired", index, navBallIcons[index]);
-          ballIconEl.className = "ti " + navBallIcons[index];
-          navBall.classList.remove("nb-switching");
-        }, 180);
-      }
-
-      function nbClose_menu() {
-        closeBallMenu();
-      }
-
-      window.nbSwitchIcon = nbSwitchIcon;
-      window.nbClose_menu = nbClose_menu;
-
-      function updateBallItems() {
-        const rect = navBall.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        navBallItems.forEach((item, index) => {
-          const radians = (itemAngles[index] * Math.PI) / 180;
-          const offsetX = Math.round(Math.cos(radians) * burstRadius);
-          const offsetY = Math.round(Math.sin(radians) * burstRadius);
-
-          item.style.left = `${centerX}px`;
-          item.style.top = `${centerY}px`;
-          item.style.setProperty("--x", `${offsetX}px`);
-          item.style.setProperty("--y", `${offsetY}px`);
-          item.style.zIndex = `${1000 + index}`;
-        });
-      }
-
-      function closeBallMenu() {
-        navBall.classList.remove("nb-open");
-        navBallItems.forEach((item, index) => {
-          item.style.transitionDelay = `${(navBallItems.length - 1 - index) * 60}ms`;
-          item.classList.remove("nb-show");
-        });
-      }
-
-      function openBallMenu() {
-        navBall.classList.add("nb-open");
-        updateBallItems();
-        navBallItems.forEach((item, index) => {
-          item.style.transitionDelay = `${index * 60}ms`;
-          item.classList.add("nb-show");
-        });
-      }
-
-      function toggleBallMenu() {
-        if (navBall.classList.contains("nb-open")) {
-          closeBallMenu();
-        } else {
-          openBallMenu();
-        }
-      }
-
-      navBallItems.forEach((item, index) => {
-        item.addEventListener("click", (event) => {
-          event.stopPropagation();
-          nbSwitchIcon(index);
-          nbClose_menu();
-          const targetId = navTargets[index];
-          const targetEl = document.getElementById(targetId);
-          if (targetEl) {
-            targetEl.scrollIntoView({ behavior: "smooth" });
-          }
-        });
-      });
-
-      navBall.addEventListener("pointerdown", (event) => {
-        isDragging = false;
-        dragStartX = event.clientX;
-        dragStartY = event.clientY;
-        const rect = navBall.getBoundingClientRect();
-        ballStartX = rect.left;
-        ballStartY = rect.top;
-        navBall.setPointerCapture(event.pointerId);
-      });
-
-      navBall.addEventListener("pointermove", (event) => {
-        if (event.pressure === 0 && event.pointerType === "mouse") {
-          return;
-        }
-
-        const dx = event.clientX - dragStartX;
-        const dy = event.clientY - dragStartY;
-        if (!isDragging && Math.hypot(dx, dy) > 8) {
-          isDragging = true;
-          closeBallMenu();
-          navBall.classList.add("nav-ball--dragging");
-        }
-
-        if (isDragging) {
-          const maxX = window.innerWidth - navBall.offsetWidth - 10;
-          const maxY = window.innerHeight - navBall.offsetHeight - 10;
-          const nextX = Math.min(maxX, Math.max(10, ballStartX + dx));
-          const nextY = Math.min(maxY, Math.max(10, ballStartY + dy));
-
-          navBall.style.left = `${nextX}px`;
-          navBall.style.top = `${nextY}px`;
-          navBall.style.bottom = "auto";
-          navBall.style.right = "auto";
-          updateBallItems();
-        }
-      });
-
-      navBall.addEventListener("pointerup", (event) => {
-        if (isDragging) {
-          navBall.classList.remove("nav-ball--dragging");
-        }
-        navBall.releasePointerCapture(event.pointerId);
-        setTimeout(() => {
-          isDragging = false;
-        }, 0);
-      });
-
-      navBall.addEventListener("click", (event) => {
-        if (!isDragging) {
-          toggleBallMenu();
-        }
-      });
-
-      window.addEventListener("resize", () => {
-        if (navBall.classList.contains("nb-open")) {
-          updateBallItems();
-        }
-      });
-
-      autoOpenNavBall();
-    }
-
     function rotateRole() {
       if (!roleEl) return;
-      roleEl.textContent = roles[roleIndex];
-      roleIndex = (roleIndex + 1) % roles.length;
+      roleEl.style.opacity = '0';
+      setTimeout(() => { roleEl.textContent = roles[roleIndex]; roleEl.style.opacity = '1'; roleIndex = (roleIndex + 1) % roles.length; }, 350);
     }
 
-    function initPortfolioLightbox() {
-      const cards = Array.from(document.querySelectorAll('.portfolio-card'));
-      const lightbox = document.getElementById('portfolioLightbox');
-      const closeBtn = lightbox?.querySelector('.portfolio-lightbox__close');
-      const backdrop = lightbox?.querySelector('.portfolio-lightbox__backdrop');
-      const titleEl = document.getElementById('portfolioLightboxTitle');
-      const summaryEl = document.getElementById('portfolioLightboxSummary');
-      const descriptionEl = document.getElementById('portfolioLightboxDescription');
-      const viewBtn = document.getElementById('portfolioLightboxViewBtn');
+    /* ── Nav Ball ────────────────────────── */
+    function initNavBall() {
+      const navBall      = document.getElementById('navBall');
+      const ballIconEl   = document.getElementById('ballIconEl');
+      const navBallItems = Array.from(document.querySelectorAll('.nav-ball-item'));
+      const navTargets   = ['home', 'about', 'skills', 'portfolio', 'certificates', 'contact'];
+      const navBallIcons = ['ti-home', 'ti-user', 'ti-tools', 'ti-briefcase', 'ti-certificate', 'ti-mail'];
+      const itemAngles   = [-150, -110, -55, -25, 5, 35];
+      const burstRadius  = 110;
+      let isDragging = false, dragStartX = 0, dragStartY = 0, ballStartX = 0, ballStartY = 0;
 
-      if (!lightbox || !titleEl || !summaryEl || !descriptionEl || !viewBtn) return;
-
-      function openLightbox(card) {
-        titleEl.textContent = card.dataset.title || 'Project';
-        summaryEl.textContent = card.dataset.summary || '';
-        descriptionEl.textContent = card.dataset.description || '';
-        viewBtn.href = card.dataset.link || '#';
-        lightbox.classList.add('active');
-        lightbox.setAttribute('aria-hidden', 'false');
+      function updateBallItems() {
+        const rect    = navBall.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top  + rect.height / 2;
+        navBallItems.forEach((item, idx) => {
+          const rad = (itemAngles[idx] * Math.PI) / 180;
+          item.style.left = `${centerX}px`;
+          item.style.top  = `${centerY}px`;
+          item.style.setProperty('--x', `${Math.round(Math.cos(rad) * burstRadius)}px`);
+          item.style.setProperty('--y', `${Math.round(Math.sin(rad) * burstRadius)}px`);
+          item.style.zIndex = `${1000 + idx}`;
+        });
       }
-
-      function closeLightbox() {
-        lightbox.classList.remove('active');
-        lightbox.setAttribute('aria-hidden', 'true');
+      function closeBallMenu() {
+        navBall.classList.remove('nb-open');
+        navBallItems.forEach((item, idx) => {
+          item.style.transitionDelay = `${(navBallItems.length - 1 - idx) * 60}ms`;
+          item.classList.remove('nb-show');
+        });
       }
+      function openBallMenu() {
+        navBall.classList.add('nb-open');
+        updateBallItems();
+        navBallItems.forEach((item, idx) => {
+          item.style.transitionDelay = `${idx * 60}ms`;
+          item.classList.add('nb-show');
+        });
+      }
+      function toggleBallMenu() {
+        navBall.classList.contains('nb-open') ? closeBallMenu() : openBallMenu();
+      }
+      function nbSwitchIcon(idx) {
+        navBall.classList.add('nb-switching');
+        setTimeout(() => { ballIconEl.className = 'ti ' + navBallIcons[idx]; navBall.classList.remove('nb-switching'); }, 180);
+      }
+      window.nbSwitchIcon  = nbSwitchIcon;
+      window.nbClose_menu  = closeBallMenu;
 
-      cards.forEach((card) => {
-        const openFromCard = (event) => {
-          if (event.type === 'keydown' && !(event.key === 'Enter' || event.key === ' ')) {
-            return;
-          }
-          event.preventDefault();
-          openLightbox(card);
-        };
-
-        card.addEventListener('click', openFromCard);
-        card.addEventListener('keydown', openFromCard);
-      });
-
-      document.querySelectorAll('.portfolio__trigger').forEach((button) => {
-        button.addEventListener('click', (event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          const card = button.closest('.portfolio-card');
-          if (card) {
-            openLightbox(card);
-          }
+      navBallItems.forEach((item, idx) => {
+        item.addEventListener('click', e => {
+          e.stopPropagation();
+          nbSwitchIcon(idx);
+          closeBallMenu();
+          const el = document.getElementById(navTargets[idx]);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
         });
       });
 
-      closeBtn?.addEventListener('click', closeLightbox);
-      backdrop?.addEventListener('click', closeLightbox);
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-          closeLightbox();
+      navBall.addEventListener('pointerdown', e => {
+        isDragging = false;
+        dragStartX = e.clientX; dragStartY = e.clientY;
+        const rect = navBall.getBoundingClientRect();
+        ballStartX = rect.left; ballStartY = rect.top;
+        navBall.setPointerCapture(e.pointerId);
+      });
+      navBall.addEventListener('pointermove', e => {
+        if (e.pressure === 0 && e.pointerType === 'mouse') return;
+        const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
+        if (!isDragging && Math.hypot(dx, dy) > 8) { isDragging = true; closeBallMenu(); navBall.classList.add('nav-ball--dragging'); }
+        if (isDragging) {
+          const maxX = window.innerWidth  - navBall.offsetWidth  - 10;
+          const maxY = window.innerHeight - navBall.offsetHeight - 10;
+          navBall.style.left   = `${Math.min(maxX, Math.max(10, ballStartX + dx))}px`;
+          navBall.style.top    = `${Math.min(maxY, Math.max(10, ballStartY + dy))}px`;
+          navBall.style.bottom = 'auto'; navBall.style.right = 'auto';
+          updateBallItems();
         }
       });
+      navBall.addEventListener('pointerup', e => {
+        if (isDragging) navBall.classList.remove('nav-ball--dragging');
+        navBall.releasePointerCapture(e.pointerId);
+        setTimeout(() => { isDragging = false; }, 0);
+      });
+      navBall.addEventListener('click', () => { if (!isDragging) toggleBallMenu(); });
+      window.addEventListener('resize', () => { if (navBall.classList.contains('nb-open')) updateBallItems(); });
+
+      /* auto-open on load */
+      requestAnimationFrame(() => { openBallMenu(); setTimeout(closeBallMenu, 1250); });
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    /* ── Portfolio Lightbox ──────────────── */
+    function initPortfolioLightbox() {
+      const lightbox     = document.getElementById('portfolioLightbox');
+      const closeBtn     = lightbox?.querySelector('.portfolio-lightbox__close');
+      const backdrop     = lightbox?.querySelector('.portfolio-lightbox__backdrop');
+      const titleEl      = document.getElementById('portfolioLightboxTitle');
+      const summaryEl    = document.getElementById('portfolioLightboxSummary');
+      const descEl       = document.getElementById('portfolioLightboxDescription');
+      const viewBtn      = document.getElementById('portfolioLightboxViewBtn');
+      if (!lightbox || !titleEl) return;
+
+      function openLB(card) {
+        titleEl.textContent   = card.dataset.title || '';
+        summaryEl.textContent = card.dataset.summary || '';
+        descEl.textContent    = card.dataset.description || '';
+        viewBtn.href          = card.dataset.link || '#';
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLB() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.portfolio-card').forEach(card => {
+        card.addEventListener('click', e => { e.preventDefault(); openLB(card); });
+        card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLB(card); } });
+      });
+      document.querySelectorAll('.portfolio__trigger').forEach(btn => {
+        btn.addEventListener('click', e => { e.stopPropagation(); openLB(btn.closest('.portfolio-card')); });
+      });
+      closeBtn?.addEventListener('click', closeLB);
+      backdrop?.addEventListener('click', closeLB);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+    }
+
+    /* ── DOMContentLoaded ────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
       typeHello();
       initNavBall();
       initPortfolioLightbox();
       rotateRole();
       setInterval(rotateRole, 2200);
-    });
 
-    /* SCROLL REVEAL ANIMATIONS */
-    const sr = ScrollReveal({
-      distance: '60px',
-      duration: 1500,
-      delay: 200,
-      reset: true
+      /* Scroll Reveal */
+      const sr = ScrollReveal({ distance: '60px', duration: 1400, delay: 200, reset: true });
+      sr.reveal('.home__title',      { origin: 'left' });
+      sr.reveal('.home__down',       { delay: 400 });
+      sr.reveal('.home__img-ring',   { origin: 'right', delay: 500 });
+      sr.reveal('.about__img-wrap',  { origin: 'left',  delay: 200 });
+      sr.reveal('.about__side',      { origin: 'right', delay: 300 });
+      sr.reveal('.skills__card',     { origin: 'bottom', interval: 150 });
+      sr.reveal('.portfolio__img',   { interval: 200 });
+      sr.reveal('.cert-card',        { interval: 150 });
+      sr.reveal('.contact__info',    { origin: 'left',  delay: 200 });
+      sr.reveal('.contact__form',    { origin: 'right', delay: 300 });
     });
-
-    sr.reveal('.home__title',    { origin: 'left' });
-    sr.reveal('.home__down',     { delay: 400 });
-    sr.reveal('.home__img',      { origin: 'right', delay: 500 });
-    sr.reveal('.about__img',     { origin: 'left',  delay: 200 });
-    sr.reveal('.about__content', { origin: 'right', delay: 300 });
-    sr.reveal('.skills__box',    { origin: 'left',  delay: 200 });
-    sr.reveal('.skills__img',    { origin: 'right', delay: 300 });
-    sr.reveal('.doodle-card',    { interval: 200 });
-    sr.reveal('.contact__info',  { origin: 'left',  delay: 200 });
-    sr.reveal('.contact__form',  { origin: 'right', delay: 300 });
   </script>
-
 
   <!-- ===== DOODLE NAV BALL ===== -->
   <div class="nav-ball" id="navBall">
@@ -683,8 +631,8 @@
   <div class="nav-ball-item" id="nb1"><i class="ti ti-user"></i> About</div>
   <div class="nav-ball-item" id="nb2"><i class="ti ti-tools"></i> Skills</div>
   <div class="nav-ball-item" id="nb3"><i class="ti ti-briefcase"></i> Portfolio</div>
-  <div class="nav-ball-item" id="nb4"><i class="ti ti-mail"></i> Contact</div>
-  <div class="nav-ball-item" id="nb5"><i class="ti ti-certificate"></i> Certificates</div>
+  <div class="nav-ball-item" id="nb4"><i class="ti ti-certificate"></i> Certs</div>
+  <div class="nav-ball-item" id="nb5"><i class="ti ti-mail"></i> Contact</div>
 
 </body>
 </html>
