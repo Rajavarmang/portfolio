@@ -339,7 +339,7 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
                 <div class="contact__item-icon"><i class="ti ti-mail"></i></div>
                 <div>
                   <p class="contact__subtitle">EMAIL</p>
-                  <span class="contact__text">rajavarmang1312@gmail.com</span>
+                  <a href="mailto:rajavarmang1312@gmail.com" class="contact__text" aria-label="Email Varman at rajavarmang1312@gmail.com">rajavarmang1312@gmail.com</a>
                 </div>
               </div>
               <div class="contact__item">
@@ -363,25 +363,29 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
           </div>
 
           <!-- Contact Form -->
-          <form class="contact__form" action="">
+          <form class="contact__form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="0f2f4b5f-7d8b-428c-a7ae-d1db3178ce3f">
+            <input type="hidden" name="subject" value="New message from portfolio">
             <div class="contact__inputs">
               <div>
                 <label class="contact__label" for="c-name">Name</label>
-                <input id="c-name" type="text" placeholder="Your name" class="contact__input">
+                <input id="c-name" name="name" type="text" placeholder="Your name" class="contact__input" required>
               </div>
               <div>
                 <label class="contact__label" for="c-email">Email</label>
-                <input id="c-email" type="email" placeholder="your@email.com" class="contact__input">
+                <input id="c-email" name="email" type="email" placeholder="your@email.com" class="contact__input" required>
               </div>
             </div>
             <div>
               <label class="contact__label" for="c-message">Message</label>
-              <textarea id="c-message" class="contact__input" placeholder="How can I help you?" rows="5"></textarea>
+              <textarea id="c-message" name="message" class="contact__input" placeholder="How can I help you?" rows="5" required></textarea>
             </div>
-            <button type="button" class="contact__button">Send Message</button>
+            <button type="submit" class="contact__button">Send Message</button>
+            <p id="formStatus" role="status" aria-live="polite" style="margin-top:0.75rem;font-family:'Inter',sans-serif;font-size:0.875rem;"></p>
           </form>
         </div>
       </div>
+     
     </section>
 
   </main>
@@ -633,6 +637,46 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
   <div class="nav-ball-item" id="nb3"><i class="ti ti-briefcase"></i> Portfolio</div>
   <div class="nav-ball-item" id="nb4"><i class="ti ti-certificate"></i> Certs</div>
   <div class="nav-ball-item" id="nb5"><i class="ti ti-mail"></i> Contact</div>
+
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const btn = contactForm.querySelector('.contact__button');
+        const status = document.getElementById('formStatus');
+        const originalText = btn.textContent;
+
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        status.textContent = '';
+
+        try {
+          const res = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            status.textContent = "Message sent — I'll get back to you soon.";
+            status.style.color = '#4cd7f6';
+            contactForm.reset();
+          } else {
+            status.textContent = 'Something went wrong. Please email me directly instead.';
+            status.style.color = '#ff6b6b';
+          }
+        } catch (err) {
+          status.textContent = 'Network error. Please email me directly instead.';
+          status.style.color = '#ff6b6b';
+        } finally {
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>

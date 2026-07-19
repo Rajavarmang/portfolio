@@ -967,6 +967,20 @@ body {
     font-family: 'Inter', sans-serif; font-size: 0.9375rem;
     color: #dae2fd;
 }
+a.contact__text {
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+a.contact__text:hover,
+a.contact__text:focus-visible {
+    color: #4cd7f6;
+    text-decoration: underline;
+}
+a.contact__text:focus-visible {
+    outline: 2px solid #4cd7f6;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
 .contact__resume-link {
     display: inline-flex; align-items: center; gap: 0.5rem;
     font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600;
@@ -1141,3 +1155,4 @@ body {
     .nav { padding: 1rem 1.25rem; }
     .doodle-overlay i { font-size: 28px !important; }
 }
+
