@@ -97,7 +97,7 @@
           <div class="home__role-card">
             <p class="home__role" id="roleText" aria-live="polite">Full Stack Developer</p>
           </div>
-          <p class="home__text">Building high-performance, responsive web applications with a focus on clean code, modern architecture, and exceptional user experiences.</p>
+          <p class="home__text">Building clean, responsive web applications with Python, Flask, and modern frontend tools — with a growing focus on AI-powered features and thoughtful UI design.</p>
           <div class="home__cta-group">
             <a href="#portfolio" class="home__cta">View My Work</a>
           </div>
@@ -299,6 +299,20 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
               </div>
             </div>
           </article>
+          <article class="portfolio__img portfolio-card" tabindex="0" role="button"
+            data-title="IPL Data Analysis"
+            data-summary="Exploratory data analysis on IPL match and player data, uncovering trends in team performance, toss impact, and scoring patterns."
+            data-description="An end-to-end Exploratory Data Analysis project on IPL (Indian Premier League) cricket data, built in Google Colab. Cleaned and preprocessed raw match data, then analyzed trends such as team win rates, toss decisions, venue-wise scoring patterns, and top-performing players. Visualized findings using Python data-viz libraries and documented the workflow in a GitHub-ready README for reproducibility."
+            data-link="https://github.com/Rajavarmang/-INIB">
+            <div class="portfolio__thumb"><img src="img\work4.jpg" alt="IPL Data Analysis preview"></div>
+            <div class="portfolio__description">
+              <p class="portfolio__desc-title">IPL Data Analysis</p>
+              <p class="portfolio__desc-text">Exploratory data analysis on IPL match and player data</p>
+              <div class="portfolio__desc-footer">
+                <button type="button" class="portfolio__desc-link portfolio__trigger">View details <i class="ti ti-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
 
         </div>
 
@@ -393,21 +407,12 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer__container">
-      <div class="footer__data">
+      <div class="footer__data footer__data--left">
         <h2 class="footer__title">RAJAVARMAN-G</h2>
         <p class="footer__text">My personal portfolio — built with code &amp; passion.</p>
+        <p class="footer__availability"><strong>Availability status:</strong> Open to opportunities</p>
       </div>
-      <div class="footer__data">
-        <h2 class="footer__title" style="font-size:1rem;margin-bottom:0.5rem;">EXPLORE</h2>
-        <ul>
-          <li><a href="#home"         class="footer__link">Home</a></li>
-          <li><a href="#about"        class="footer__link">About</a></li>
-          <li><a href="#skills"       class="footer__link">Skills</a></li>
-          <li><a href="#portfolio"    class="footer__link">Portfolio</a></li>
-          <li><a href="#contact"      class="footer__link">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer__data">
+      <div class="footer__data footer__data--right">
         <h2 class="footer__title" style="font-size:1rem;margin-bottom:0.5rem;">FOLLOW</h2>
         <div>
           <a href="#" class="footer__social"><i class="bx bxl-linkedin"></i></a>
@@ -415,6 +420,7 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
           <a href="#" class="footer__social"><i class="bx bxl-twitter"></i></a>
         </div>
       </div>
+      <p class="footer__updated">Last updated: July 2026</p>
     </div>
   </footer>
 
@@ -456,7 +462,7 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
     const helloText = "HI  I'M  RAJAVARMAN...";
     const helloEl   = document.getElementById('helloType');
     const roleEl    = document.getElementById('roleText');
-    const roles     = ['Full Stack Developer', 'Python & Flask Enthusiast', 'UI Explorer'];
+    const roles     = ['Full Stack Developer', 'Python & Flask Developer', 'UI/UX Explorer'];
     let i = 0, roleIndex = 0;
 
     function typeHello() {

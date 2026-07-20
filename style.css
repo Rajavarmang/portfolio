@@ -1042,8 +1042,9 @@ a.contact__text:focus-visible {
 }
 .footer__container {
     max-width: 1280px; margin: 0 auto; padding: 0 2.5rem;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 1.5rem;
+    display: flex; justify-content: flex-start; align-items: flex-start;
+    flex-wrap: wrap; gap: 35rem;
+    position: relative;
 }
 .footer__title {
     font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700;
@@ -1053,11 +1054,23 @@ a.contact__text:focus-visible {
     font-family: 'Inter', sans-serif; font-size: 0.875rem;
     color: #908fa0; margin-top: 0.25rem;
 }
+.footer__availability {
+    font-family: 'Inter', sans-serif; font-size: 0.875rem;
+    color: #c0c1ff; margin-top: 0.25rem;
+}
+.footer__updated {
+    position: absolute;
+    right: 12rem;
+    bottom: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #7f7e94;
+}
 .footer__data { display: flex; flex-direction: column; gap: 0.75rem; }
 .footer__data ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; padding: 0; margin: 0; }
 .footer__link {
     font-family: 'Inter', sans-serif; font-size: 0.875rem;
-    color: #908fa0; text-decoration: none;
+    color: #8c8b9e; text-decoration: none;
     transition: color 0.3s;
 }
 .footer__link:hover { color: #c0c1ff; }
@@ -1068,7 +1081,7 @@ a.contact__text:focus-visible {
     border: 1px solid rgba(192,193,255,0.15);
     color: #908fa0; text-decoration: none;
     transition: border-color 0.3s, color 0.3s;
-    margin-right: 0.5rem;
+    margin-right: 1rem;
 }
 .footer__social:hover { border-color: #c0c1ff; color: #c0c1ff; }
 
