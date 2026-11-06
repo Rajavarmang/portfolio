@@ -536,6 +536,7 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
       }
       window.nbSwitchIcon  = nbSwitchIcon;
       window.nbClose_menu  = closeBallMenu;
+      window.nbOpen_menu   = openBallMenu;
 
       navBallItems.forEach((item, idx) => {
         item.addEventListener('click', e => {
@@ -573,6 +574,11 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
         setTimeout(() => { isDragging = false; }, 0);
       });
       navBall.addEventListener('click', () => { if (!isDragging) toggleBallMenu(); });
+      document.addEventListener('pointerdown', (event) => {
+        if (!navBall.classList.contains('nb-open')) return;
+        if (event.target.closest('#navBall, .nav-ball-item')) return;
+        closeBallMenu();
+      });
       window.addEventListener('resize', () => { if (navBall.classList.contains('nb-open')) updateBallItems(); });
 
     }

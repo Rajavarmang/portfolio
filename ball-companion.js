@@ -86,6 +86,7 @@
   }
 
   window.ballSay = ballSay;
+  window.ballHide = hideBubble;
 
   function hop() {
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && ball.animate) {
@@ -329,9 +330,15 @@
 
   const notebookWrap = document.createElement('div');
   notebookWrap.className = 'story-notebook-wrap';
-  notebookWrap.innerHTML = '<button id="storyNotebook" class="story-notebook" type="button" aria-label="Open my story sketchbook"><svg viewBox="0 0 64 80" aria-hidden="true"><path d="M17 7h38v66H17z" fill="#c0c1ff" stroke="#4cd7f6" stroke-width="2"/><path d="M17 7v66M22 4v72M27 4v72" fill="none" stroke="#0b1326" stroke-width="3"/><path d="M25 18c11-7 19 8 29 1M25 34c8-5 17 5 29-1M25 50c11-7 18 7 29 1" fill="none" stroke="#0b1326" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 4"/><path d="M54 66l7-18 4 2-7 18z" fill="#ffd700" stroke="#0b1326" stroke-width="1.5"/></svg></button><span class="story-notebook-hint">Drag MR_Handler here ✏️</span>';
+  notebookWrap.innerHTML = '<button id="storyNotebook" class="story-notebook" type="button" aria-label="Open my story sketchbook"><svg viewBox="0 0 64 80" aria-hidden="true"><path d="M17 7h38v66H17z" fill="#c0c1ff" stroke="#4cd7f6" stroke-width="2"/><path d="M17 7v66M22 4v72M27 4v72" fill="none" stroke="#0b1326" stroke-width="3"/><path d="M25 18c11-7 19 8 29 1M25 34c8-5 17 5 29-1M25 50c11-7 18 7 29 1" fill="none" stroke="#0b1326" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 4"/><path d="M54 66l7-18 4 2-7 18z" fill="#ffd700" stroke="#0b1326" stroke-width="1.5"/></svg></button><button class="story-notebook-hint-button" type="button" aria-label="Show notebook hint">Hint</button><span class="story-notebook-hint">Drag MR_Handler here ✏️</span>';
   document.body.appendChild(notebookWrap);
   const notebook = notebookWrap.querySelector('#storyNotebook');
+  const notebookHintButton = notebookWrap.querySelector('.story-notebook-hint-button');
+  notebookHintButton.addEventListener('click', function () {
+    if (typeof window.ballSay === 'function') {
+      window.ballSay('Drag the MR_Handler on the notebook ✏️', 4500);
+    }
+  });
 
   const homeSection = document.getElementById('home');
   function updateNotebookVisibility() {
@@ -740,39 +747,49 @@
       later(function () {
         walk.cancel();
         ball.classList.remove('ball-walking');
-        ball.classList.add('ball-snapping');
-        arms(true);
+        document.body.classList.remove('intro-playing');
+        if (typeof window.ballMood === 'function') window.ballMood('happy', 1500);
+        ball.classList.add('ball-waving');
+        if (typeof window.ballSay === 'function') window.ballSay("Hii! I'm " + BALL_NAME + " 👋 Welcome to my dad's portfolio.", 3200);
+
         later(function () {
-          ball.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+          if (typeof window.ballSay === 'function') window.ballSay('I know all his secrets. Want them? Drag me onto the notebook ✏️', 6500);
+          ball.classList.remove('ball-waving');
+        }, 3200);
+
+        later(function () {
+          window.ballHide();
           later(function () {
-            if (typeof window.nbClose_menu === 'function') window.nbClose_menu();
-            ball.classList.remove('ball-snapping');
+            ball.classList.add('ball-snapping');
             arms(true);
             later(function () {
+              if (typeof window.nbOpen_menu === 'function') window.nbOpen_menu();
+              else ball.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+              ball.classList.remove('ball-snapping');
               arms(true);
-              document.body.classList.remove('intro-playing');
-              if (typeof window.ballMood === 'function') window.ballMood('happy', 1500);
-              ball.classList.add('ball-waving');
-              if (typeof window.ballSay === 'function') window.ballSay("Hii! I'm " + BALL_NAME + " 👋 Welcome to my dad's portfolio.", 3200);
               later(function () {
-                if (typeof window.ballSay === 'function') window.ballSay('I know all his secrets. Want them? Drag me onto the notebook ✏️', 4500);
-                ball.classList.remove('ball-waving');
+                later(function () {
+                  arms(true);
+                  document.body.classList.remove('intro-playing');
+                }, 700);
+                if (window.nbClose_menu) window.nbClose_menu();
                 if (notebook) { notebook.classList.add('hint-pulse'); setTimeout(function () { notebook.classList.remove('hint-pulse'); }, 1800); }
                 arms(false);
                 markSeen();
-              }, 3200);
-            }, 700);
-          }, 1980);
-        }, 1880);
+              }, 1500);
+            }, 1880);
+          }, 100);
+        }, 6200);
       }, 2500);
     } else {
       later(function () {
+        window.ballHide();
         ball.classList.remove('ball-walking');
         document.body.classList.remove('intro-playing');
         arms(true);
         if (typeof window.ballSay === 'function') window.ballSay("Hii! I'm " + BALL_NAME + " 👋 Welcome to my dad's portfolio.", 3200);
         later(function () {
-          if (typeof window.ballSay === 'function') window.ballSay('I know all his secrets. Want them? Drag me onto the notebook ✏️', 4500);
+          if (typeof window.ballSay === 'function') window.ballSay('I know all his secrets. Want them? Drag me onto the notebook ✏️', 6500);
           arms(false);
           markSeen();
         }, 3200);
