@@ -1,0 +1,113 @@
+.ball-bubble {
+  position: fixed;
+  z-index: 498;
+  max-width: min(260px, calc(100vw - 24px));
+  padding: 10px 12px;
+  border: 1px solid rgba(192, 193, 255, 0.25);
+  border-radius: 12px;
+  background: rgba(23, 31, 51, 0.97);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  color: #dae2fd;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px) scale(0.92);
+  transform-origin: bottom center;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+}
+
+.ball-bubble.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.ball-bubble::after {
+  position: absolute;
+  bottom: -6px;
+  left: var(--ball-tail-x, 50%);
+  width: 10px;
+  height: 10px;
+  border-right: 1px solid rgba(192, 193, 255, 0.25);
+  border-bottom: 1px solid rgba(192, 193, 255, 0.25);
+  background: rgba(23, 31, 51, 0.97);
+  content: "";
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.ball-bubble.is-below::after {
+  top: -6px;
+  bottom: auto;
+  border: 0;
+  border-top: 1px solid rgba(192, 193, 255, 0.25);
+  border-left: 1px solid rgba(192, 193, 255, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ball-bubble {
+    transition-duration: 0ms;
+  }
+}
+
+.nav-ball {
+  animation: ball-face-bob 3s ease-in-out infinite;
+}
+
+.nav-ball.nb-open,
+.nav-ball.nav-ball--dragging,
+.nav-ball:hover {
+  animation: none;
+}
+
+@keyframes ball-face-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -4px; }
+}
+
+.ball-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 160ms ease;
+}
+
+.ball-face.is-blinking .ball-eye,
+.ball-face.is-blinking .ball-pupil {
+  transform: scaleY(0.1);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.nav-ball #ballIconEl {
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.nav-ball.nb-open #ballIconEl,
+.nav-ball.nb-switching #ballIconEl {
+  opacity: 1;
+}
+
+.nav-ball.nb-open .ball-face,
+.nav-ball.nb-switching .ball-face {
+  opacity: 0;
+}
+
+.ball-mouth-wow,
+.ball-mouth-happy { display: none; }
+.nav-ball.happy .ball-mouth-default { display: none; }
+.nav-ball.happy .ball-mouth-happy { display: block; }
+.nav-ball.wow .ball-mouth-default,
+.nav-ball.wow .ball-mouth-happy { display: none; }
+.nav-ball.wow .ball-mouth-wow { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-ball { animation: none; }
+  .ball-face.is-blinking .ball-eye { transform: none; }
+}
