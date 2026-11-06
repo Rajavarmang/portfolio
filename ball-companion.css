@@ -116,11 +116,19 @@
 .story-notebook-wrap {
   position: fixed;
   left: 1.5rem;
-  bottom: 1.5rem;
+  top: 5rem;
   z-index: 497;
   display: grid;
   justify-items: center;
   width: 96px;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+}
+
+.story-notebook-wrap.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
 }
 
 .story-notebook {
@@ -363,7 +371,7 @@ body.story-open .ball-bubble {
 @media (max-width: 768px) {
   .story-notebook-wrap {
     left: 0.75rem;
-    bottom: 0.75rem;
+    top: 4.25rem;
     width: 82px;
   }
 
@@ -435,6 +443,147 @@ body.story-open .ball-bubble {
   content: "";
   vertical-align: text-bottom;
   animation: story-pencil-caret 700ms steps(1) infinite;
+}
+
+.story-kural-opening {
+  position: relative;
+  height: 100%;
+  animation: story-kural-fade-in 700ms ease-out both;
+}
+
+.story-kural-opening .story-chapter-title {
+  margin: 0;
+  color: #dae2fd;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.story-kural-opening .story-chapter-title span {
+  display: block;
+}
+
+.story-kural-copy {
+  min-height: 0;
+  color: #dae2fd;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.78rem, 1.35vw, 1rem);
+  line-height: 1.7;
+}
+
+.story-kural-copy::after {
+  display: none;
+}
+
+.story-kural-meaning {
+  max-width: 610px;
+  margin: clamp(18px, 4vh, 32px) auto 0;
+  text-align: center;
+}
+
+.story-kural-author {
+  margin: clamp(14px, 2.5vh, 22px) 0 0;
+  color: #ffd700;
+  font-family: "Caveat", Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  text-align: center;
+}
+
+@keyframes story-kural-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.story-project-page {
+  animation: story-project-fade-in 500ms ease-out both;
+}
+
+.story-project-heading {
+  margin-bottom: clamp(12px, 2vh, 20px);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(192, 193, 255, 0.22);
+  text-align: center;
+}
+
+.story-project-chapter,
+.story-project-subtitle {
+  margin: 0;
+  color: #4cd7f6;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(0.62rem, 1vw, 0.76rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.story-project-heading h2 {
+  margin: 5px 0;
+  color: #c0c1ff;
+  font-family: Georgia, serif;
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  letter-spacing: 0.12em;
+}
+
+.story-project-section {
+  margin-top: clamp(8px, 1.6vh, 14px);
+}
+
+.story-project-section h3 {
+  margin: 0 0 4px;
+  color: #ffd700;
+  font-family: Georgia, serif;
+  font-size: clamp(0.78rem, 1.2vw, 0.95rem);
+}
+
+.story-project-section h3 span {
+  margin-right: 7px;
+  color: #4cd7f6;
+  font-family: "Inter", sans-serif;
+  font-size: 0.68em;
+}
+
+.story-project-section p {
+  margin: 0 0 5px;
+  color: #dae2fd;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(0.61rem, 0.94vw, 0.78rem);
+  line-height: 1.48;
+}
+
+.story-project-section strong {
+  color: #4cd7f6;
+  font-weight: 600;
+}
+
+.story-project-copy,
+.story-project-mobile-copy {
+  min-height: 0;
+}
+
+.story-project-copy::after,
+.story-project-mobile-copy::after {
+  display: none;
+}
+
+.story-project-quote {
+  margin: clamp(12px, 2vh, 18px) 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+  font-family: "Caveat", Georgia, serif;
+  font-size: clamp(0.85rem, 1.4vw, 1.08rem);
+  text-align: center;
+}
+
+.story-project-mobile-copy {
+  max-height: calc(100% - 54px);
+  overflow-y: auto;
+}
+
+@keyframes story-project-fade-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes story-pencil-caret {
@@ -520,4 +669,109 @@ body.story-open .ball-bubble {
   color: rgba(218, 226, 253, 0.8);
   font-family: "Caveat", "Comic Sans MS", cursive;
   font-size: 1.15rem;
+}
+
+/* Ball character limbs (cartoon style) */
+.nav-ball { overflow: visible; }
+.ball-limbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: transform 200ms ease;
+}
+/* the menu rotates the ball 90deg; rotate the limbs back so the legs stay down */
+.nav-ball.nb-open .ball-limbs { transform: rotate(-90deg); }
+.ball-limb {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px solid #1000a9;
+  background: #dae2fd;
+  pointer-events: none;
+  transform-origin: 50% 0;
+}
+.ball-leg {
+  z-index: -1;
+  top: 86%;
+  width: 9px;
+  height: 17px;
+  border-radius: 6px;
+}
+.ball-leg-left { left: 24%; }
+.ball-leg-right { right: 24%; }
+.ball-shoe {
+  position: absolute;
+  bottom: -8px;
+  width: 18px;
+  height: 11px;
+  box-sizing: border-box;
+  border: 2px solid #1000a9;
+  border-radius: 10px 10px 5px 5px;
+  background: #ffd700;
+}
+.ball-leg-left .ball-shoe { right: -3px; }
+.ball-leg-right .ball-shoe { left: -3px; }
+.ball-arm {
+  z-index: 1;
+  top: 44%;
+  width: 8px;
+  height: 17px;
+  border-radius: 6px;
+}
+.ball-arm-left { left: -5px; transform: rotate(22deg); }
+.ball-arm-right { right: -5px; transform: rotate(-22deg); }
+.ball-hand {
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  box-sizing: border-box;
+  border: 2px solid #1000a9;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* intro poses */
+body.intro-playing .nav-ball { animation: none; }
+body.intro-playing .nav-ball.ball-walking { rotate: -2deg; }
+.nav-ball.ball-walking .ball-leg-left  { animation: ball-leg-step 250ms ease-in-out infinite alternate; }
+.nav-ball.ball-walking .ball-leg-right { animation: ball-leg-step 250ms ease-in-out infinite alternate-reverse; }
+.nav-ball.ball-walking .ball-arm-left  { animation: ball-arm-swing-l 250ms ease-in-out infinite alternate-reverse; }
+.nav-ball.ball-walking .ball-arm-right { animation: ball-arm-swing-r 250ms ease-in-out infinite alternate; }
+.nav-ball.ball-snapping .ball-arm-left { animation: ball-arm-snap 600ms ease forwards; }
+.nav-ball.ball-waving .ball-arm-left   { animation: ball-arm-wave 600ms ease-in-out infinite; }
+.nav-ball.ball-snapping::after {
+  position: absolute;
+  top: -16px;
+  left: -20px;
+  color: #ffd700;
+  font-size: 18px;
+  line-height: 1;
+  content: "\2726";
+  pointer-events: none;
+  animation: ball-snap-pop 600ms ease 250ms both;
+}
+.story-notebook.hint-pulse { animation: story-hint-pulse 600ms 3; }
+
+@keyframes ball-leg-step { from { transform: rotate(-26deg); } to { transform: rotate(26deg); } }
+@keyframes ball-arm-swing-l { from { transform: rotate(8deg); }  to { transform: rotate(42deg); } }
+@keyframes ball-arm-swing-r { from { transform: rotate(-8deg); } to { transform: rotate(-42deg); } }
+@keyframes ball-arm-snap {
+  0%   { transform: rotate(22deg); }
+  40%  { transform: rotate(150deg); }
+  55%  { transform: rotate(138deg); }
+  70%, 100% { transform: rotate(150deg); }
+}
+@keyframes ball-arm-wave {
+  0%, 100% { transform: rotate(130deg); }
+  50%      { transform: rotate(168deg); }
+}
+@keyframes ball-snap-pop {
+  0%   { opacity: 0; transform: scale(0.3); }
+  40%  { opacity: 1; transform: scale(1.3); }
+  100% { opacity: 0; transform: scale(1.7); }
+}
+@keyframes story-hint-pulse {
+  50% { filter: drop-shadow(0 0 14px rgba(255, 215, 0, 0.95)); outline: 2px solid rgba(255, 215, 0, 0.95); }
 }

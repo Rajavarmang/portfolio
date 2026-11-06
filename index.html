@@ -287,20 +287,6 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
           </article>
 
           <article class="portfolio__img portfolio-card" tabindex="0" role="button"
-            data-title="Personal Blog"
-            data-summary="A personal blog for sharing design learning and progress updates."
-            data-description="This blog captures my daily Figma learning journey, design notes, and personal milestones in a simple and engaging format."
-            data-link="https://learning-figma-blog.vercel.app/">
-            <div class="portfolio__thumb"><img src="img/work3.png" alt="Personal Blog preview"></div>
-            <div class="portfolio__description">
-              <p class="portfolio__desc-title">Personal Blog</p>
-              <p class="portfolio__desc-text">Tracking my daily Figma learning progress</p>
-              <div class="portfolio__desc-footer">
-                <button type="button" class="portfolio__desc-link portfolio__trigger">View details <i class="ti ti-arrow-right"></i></button>
-              </div>
-            </div>
-          </article>
-          <article class="portfolio__img portfolio-card" tabindex="0" role="button"
             data-title="IPL Data Analysis"
             data-summary="Exploratory data analysis on IPL match and player data, uncovering trends in team performance, toss impact, and scoring patterns."
             data-description="An end-to-end Exploratory Data Analysis project on IPL (Indian Premier League) cricket data, built in Google Colab. Cleaned and preprocessed raw match data, then analyzed trends such as team win rates, toss decisions, venue-wise scoring patterns, and top-performing players. Visualized findings using Python data-viz libraries and documented the workflow in a GitHub-ready README for reproducibility."
@@ -589,8 +575,6 @@ I enjoy turning creative ideas into functional interfaces using HTML, CSS, and J
       navBall.addEventListener('click', () => { if (!isDragging) toggleBallMenu(); });
       window.addEventListener('resize', () => { if (navBall.classList.contains('nb-open')) updateBallItems(); });
 
-      /* auto-open on load */
-      requestAnimationFrame(() => { openBallMenu(); setTimeout(closeBallMenu, 1250); });
     }
 
     /* ── Portfolio Lightbox ──────────────── */

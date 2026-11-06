@@ -43,6 +43,7 @@
     return Date.now() - startedAt >= 2500 &&
       !ball.classList.contains('nb-open') &&
       !ball.classList.contains('nav-ball--dragging') &&
+      !document.body.classList.contains('intro-playing') &&
       !isLightboxOpen();
   }
 
@@ -226,207 +227,6 @@
     };
   })();
 
-// Story sketchbook
-(function () {
-  'use strict';
-
-  // EDIT THESE CHAPTERS TO PERSONALIZE THE STORY SKETCHBOOK.
-  const CHAPTERS = [
-    { title: 'Chapter 1: Learn', text: 'PLACEHOLDER', doodle: 'ti-book' },
-    { title: 'Chapter 2: Code', text: 'PLACEHOLDER', doodle: 'ti-code' },
-    { title: 'Chapter 3: Solve', text: 'PLACEHOLDER', doodle: 'ti-bulb' },
-    { title: 'Chapter 4: Build', text: 'PLACEHOLDER', doodle: 'ti-tools' }
-  ];
-  const CLOSING_LINE = 'Learn. Code. Solve. Build. Grow.';
-
-  const ball = document.getElementById('navBall');
-  if (!ball) return;
-
-  const notebookWrap = document.createElement('div');
-  notebookWrap.className = 'story-notebook-wrap';
-  notebookWrap.innerHTML = `
-    <button id="storyNotebook" class="story-notebook" type="button" aria-label="Open my story sketchbook">
-      <svg viewBox="0 0 64 80" aria-hidden="true">
-        <path d="M17 7h38v66H17z" fill="#c0c1ff" stroke="#4cd7f6" stroke-width="2"/>
-        <path d="M17 7v66M22 4v72M27 4v72" fill="none" stroke="#0b1326" stroke-width="3"/>
-        <path d="M25 18c11-7 19 8 29 1M25 34c8-5 17 5 29-1M25 50c11-7 18 7 29 1" fill="none" stroke="#0b1326" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 4"/>
-        <path d="M54 66l7-18 4 2-7 18z" fill="#ffd700" stroke="#0b1326" stroke-width="1.5"/>
-        <path d="M58 68l-3 4 1-6" fill="#dae2fd"/>
-      </svg>
-    </button>
-    <span class="story-notebook-hint">Drag Doodle here ✏️</span>`;
-  document.body.appendChild(notebookWrap);
-
-  const notebook = notebookWrap.querySelector('#storyNotebook');
-  const overlay = document.createElement('div');
-  overlay.className = 'story-overlay';
-  overlay.setAttribute('role', 'dialog');
-  overlay.setAttribute('aria-modal', 'true');
-  overlay.setAttribute('aria-labelledby', 'story-title');
-  overlay.hidden = true;
-  overlay.innerHTML = `
-    <div class="story-book" tabindex="-1">
-      <button class="story-close" type="button" aria-label="Close story sketchbook">×</button>
-      <div class="story-pages">
-        <section class="story-page story-page-left" aria-hidden="true"></section>
-        <section class="story-page story-page-right">
-          <h2 id="story-title" class="story-chapter-title"></h2>
-          <p class="story-chapter-text"></p>
-          <i class="story-doodle ti" aria-hidden="true"></i>
-          <p class="story-closing" hidden>${CLOSING_LINE}</p>
-        </section>
-      </div>
-      <div class="story-controls">
-        <button class="story-prev" type="button">← Prev</button>
-        <span class="story-page-count" aria-live="polite"></span>
-        <button class="story-next" type="button">Next →</button>
-      </div>
-    </div>`;
-  document.body.appendChild(overlay);
-
-  const book = overlay.querySelector('.story-book');
-  const leftPage = overlay.querySelector('.story-page-left');
-  const rightPage = overlay.querySelector('.story-page-right');
-  const title = overlay.querySelector('.story-chapter-title');
-  const text = overlay.querySelector('.story-chapter-text');
-  const doodle = overlay.querySelector('.story-doodle');
-  const closing = overlay.querySelector('.story-closing');
-  const pageCount = overlay.querySelector('.story-page-count');
-  const prevButton = overlay.querySelector('.story-prev');
-  const nextButton = overlay.querySelector('.story-next');
-  let currentPage = 0;
-  let isOpen = false;
-  let previousOverflow = '';
-
-  function renderPage() {
-    const chapter = CHAPTERS[currentPage] || CHAPTERS[0];
-    title.textContent = chapter.title;
-    text.textContent = chapter.text;
-    doodle.className = `story-doodle ti ${chapter.doodle}`;
-    closing.hidden = currentPage !== CHAPTERS.length - 1;
-
-    if (!window.matchMedia('(max-width: 768px)').matches && currentPage > 0) {
-      const previous = CHAPTERS[currentPage - 1];
-      leftPage.innerHTML = `<h2 class="story-chapter-title">${previous.title}</h2><p class="story-chapter-text">${previous.text}</p><i class="story-doodle ti ${previous.doodle}" aria-hidden="true"></i>`;
-    } else {
-      leftPage.innerHTML = '';
-    }
-
-    pageCount.textContent = `Page ${currentPage + 1} of ${CHAPTERS.length}`;
-    prevButton.disabled = currentPage === 0;
-    nextButton.disabled = currentPage === CHAPTERS.length - 1;
-
-    if (currentPage === CHAPTERS.length - 1 && typeof window.ballSay === 'function') {
-      window.ballSay('That\'s my story so far 🙂', 3000);
-    }
-  }
-
-  function openStory() {
-    if (isOpen) return;
-    currentPage = 0;
-    renderPage();
-    previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    document.body.classList.add('story-open');
-    overlay.hidden = false;
-    requestAnimationFrame(function () {
-      overlay.classList.add('is-open');
-      book.focus();
-    });
-    isOpen = true;
-  }
-
-  function closeStory() {
-    if (!isOpen) return;
-    overlay.classList.remove('is-open');
-    document.body.classList.remove('story-open');
-    document.body.style.overflow = previousOverflow;
-    isOpen = false;
-    window.setTimeout(function () { overlay.hidden = true; }, 180);
-    notebook.focus();
-  }
-
-  function turnPage(direction) {
-    const nextPage = currentPage + direction;
-    if (nextPage < 0 || nextPage >= CHAPTERS.length) return;
-
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      rightPage.classList.add(direction > 0 ? 'is-turning' : 'is-turning-back');
-      window.setTimeout(function () {
-        currentPage = nextPage;
-        renderPage();
-        rightPage.classList.remove('is-turning', 'is-turning-back');
-      }, 300);
-    } else {
-      rightPage.classList.add('is-turning');
-      window.setTimeout(function () {
-        currentPage = nextPage;
-        renderPage();
-        rightPage.classList.remove('is-turning');
-      }, 90);
-    }
-  }
-
-  notebook.addEventListener('click', function (event) {
-    if (event.detail === 0) return;
-    if (typeof window.ballSay === 'function') window.ballSay('Drag me onto the notebook!');
-  });
-
-  notebook.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      openStory();
-    }
-  });
-
-  overlay.querySelector('.story-close').addEventListener('click', closeStory);
-  overlay.addEventListener('click', function (event) {
-    if (event.target === overlay) closeStory();
-  });
-  prevButton.addEventListener('click', function () { turnPage(-1); });
-  nextButton.addEventListener('click', function () { turnPage(1); });
-
-  document.addEventListener('keydown', function (event) {
-    if (!isOpen || !document.body.contains(overlay)) return;
-    if (event.key === 'Escape') closeStory();
-    if (event.key === 'ArrowLeft') turnPage(-1);
-    if (event.key === 'ArrowRight') turnPage(1);
-  });
-
-  document.addEventListener('pointermove', function (event) {
-    if (!ball.classList.contains('nav-ball--dragging') || !notebook) return;
-
-    const ballRect = ball.getBoundingClientRect();
-    const notebookRect = notebook.getBoundingClientRect();
-    const distanceX = Math.max(notebookRect.left - ballRect.right, ballRect.left - notebookRect.right, 0);
-    const distanceY = Math.max(notebookRect.top - ballRect.bottom, ballRect.top - notebookRect.bottom, 0);
-    notebookWrap.classList.toggle('is-near', Math.hypot(distanceX, distanceY) <= 120);
-  }, { passive: true });
-
-  document.addEventListener('pointerup', function () {
-    if (!document.body.contains(notebook) || !ball.classList.contains('nav-ball--dragging')) return;
-
-    const ballRect = ball.getBoundingClientRect();
-    const notebookRect = notebook.getBoundingClientRect();
-    const expanded = {
-      left: notebookRect.left - 20,
-      right: notebookRect.right + 20,
-      top: notebookRect.top - 20,
-      bottom: notebookRect.bottom + 20
-    };
-    const overlaps = ballRect.left < expanded.right &&
-      ballRect.right > expanded.left &&
-      ballRect.top < expanded.bottom &&
-      ballRect.bottom > expanded.top;
-
-    notebookWrap.classList.remove('is-near');
-    if (overlaps) {
-      if (typeof window.ballMood === 'function') window.ballMood('happy', 1500);
-      openStory();
-    }
-  }, true);
-})();
-
 // Extended story sketchbook: handwriting and guestbook.
 (function () {
   'use strict';
@@ -438,13 +238,87 @@
 
   // EDIT THESE CHAPTERS TO PERSONALIZE THE STORY SKETCHBOOK.
   const CHAPTERS = [
-    { title: 'Chapter 1: Learn', text: 'PLACEHOLDER', doodle: 'ti-book' },
+    { title: 'Chapter 01 - PROMPT LAB', text: 'My First Project - Where the Journey Began', doodle: 'ti-book' },
     { title: 'Chapter 2: Code', text: 'PLACEHOLDER', doodle: 'ti-code' },
     { title: 'Chapter 3: Solve', text: 'PLACEHOLDER', doodle: 'ti-bulb' },
     { title: 'Chapter 4: Build', text: 'PLACEHOLDER', doodle: 'ti-tools' }
   ];
   const CLOSING_LINE = 'Learn. Code. Solve. Build. Grow.';
-  const PAGE_COUNT = CHAPTERS.length + 2;
+  const PAGE_COUNT = CHAPTERS.length + 3;
+  const PROMPT_LAB_SPREAD_PAGE = 1;
+  const CLOSING_PAGE = CHAPTERS.length + 1;
+  const NOTEBOOKLM_SPREAD_PAGE = 2;
+  const IPL_SPREAD_PAGE = 3;
+  const DELOITTE_SPREAD_PAGE = 4;
+  const PROMPT_BEGINNING = [
+    ['01. The Idea', 'Prompt Lab was my first project and an important milestone in my developer journey.\n\nThe idea was to explore prompt engineering and understand how effectively communicating with AI can influence the quality of its responses.'],
+    ['02. The Vision', 'My vision was to explore how users could interact with AI through structured and effective prompts.\n\nI wanted to transform the concept of prompt engineering into an interactive learning experience rather than just learning it theoretically.\n\nThis project gave me an opportunity to explore AI-powered applications and practical development.'],
+    ['03. The Struggle', 'Building my first project was not an easy experience.\n\nUnderstanding how different components work together, translating ideas into working features, and handling unexpected development challenges required patience and experimentation.\n\nThere were moments when things did not work as expected, but each challenge became an opportunity to learn something new.']
+  ];
+  const PROMPT_JOURNEY = [
+    ['04. The Breakthrough', 'Through continuous testing and experimentation, I overcame challenges and moved closer to completing my project. I learned that problem-solving is just as important as coding.'],
+    ['05. The People Behind It', 'I am grateful to the people, mentors, resources, and AI tools that supported me. Every piece of guidance helped me move forward.'],
+    ['06. The Lessons I Carry', 'Prompt Lab taught me the value of curiosity, patience, problem-solving, and continuous learning. It was my first step towards turning ideas into reality.']
+  ];
+  const NOTEBOOKLM_BEGINNING = [
+    ['01. The Idea', 'Inspired by Google NotebookLM, I wanted to build an AI-powered platform that allows users to upload PDFs, ask questions, and interact with their documents intelligently.'],
+    ['02. The Vision', 'My goal was to recreate the NotebookLM experience using Generative AI, RAG, and Agentic AI while keeping everything running locally.'],
+    ['03. The Struggle', 'Integrating multiple technologies like LangChain, Ollama, ChromaDB, and LangGraph was challenging. Connecting document retrieval, AI responses, and agent workflows required continuous debugging.']
+  ];
+  const NOTEBOOKLM_JOURNEY = [
+    ['04. The Breakthrough', 'By building the application step by step, I integrated PDF processing, vector search, RAG, tool calling, and LangGraph workflows into one functional application.'],
+    ['05. The People Behind It', 'The Nunnari Academy Generative AI and Agentic AI Bootcamp, its learning resources, and AI tools guided me throughout this capstone project.'],
+    ['06. The Lessons I Carry', 'This project strengthened my understanding of RAG, vector databases, AI agents, and workflow orchestration. It taught me how to transform multiple AI concepts into a practical application.']
+  ];
+  const IPL_BEGINNING = [
+  ['01. The Idea', 'I wanted to explore IPL data to discover patterns in team performances, player statistics, and match outcomes.'],
+  ['02. The Vision', 'My goal was to turn raw IPL data into meaningful insights using Python, Pandas, NumPy, and visualization techniques.'],
+  ['03. The Struggle', 'Cleaning data, handling missing values, and identifying meaningful patterns challenged my analytical and problem-solving skills.']
+  ];
+  const IPL_JOURNEY = [
+    ['04. The Breakthrough', 'Through univariate and bivariate analysis, I explored season-wise trends, team performance, toss decisions, player statistics, and venue records. Visualizations using Matplotlib and Seaborn helped turn complex datasets into understandable patterns.'],
+    ['05. The People Behind It', 'This project was driven by my curiosity about cricket, my learning journey in data science, and the support of Python libraries and learning resources that helped me explore and visualize the data.'],
+    ['06. The Lessons I Carry', 'This project strengthened my understanding of data cleaning, exploratory data analysis, statistical thinking, and visualization. It taught me how to investigate raw data, identify meaningful patterns, and communicate insights through visual storytelling.']
+  ];
+  const DELOITTE_BEGINNING = [
+    ['01. The Idea', "I joined Deloitte's Data Analytics Job Simulation through Forage to experience how data analytics is used to solve business problems. The project involved exploring simulated operational and HR data from Daikibo Manufacturing."],
+    ['02. The Vision', 'My goal was to transform raw data into meaningful business insights using Tableau and Microsoft Excel. I wanted to understand how data visualization and analytical logic could support better decision-making.'],
+    ['03. The Struggle', 'Working with approximately 160,000 machine telemetry records required careful data preparation and analytical thinking. Understanding downtime calculations, creating Tableau visualizations, and developing accurate Excel classification formulas challenged my problem-solving skills.']
+  ];
+  const DELOITTE_JOURNEY = [
+    ['04. The Breakthrough', 'I built an interactive Tableau downtime dashboard using calculated fields, bar charts, and filter actions to explore factory and device-level breakdowns. In Excel, I used nested IF, AND, and OR logic to classify pay equality scores into Fair, Unfair, and Highly Discriminative categories.'],
+    ['05. The People Behind It', "This experience was made possible through Deloitte's Data Analytics Job Simulation on Forage. The practical tasks and simulated business scenarios gave me an opportunity to explore professional data analytics workflows."],
+    ['06. The Lessons I Carry', 'This project strengthened my skills in Tableau, Excel, data visualization, conditional logic, and business analysis. I learned how to turn raw operational and HR data into structured insights that support better decisions.']
+  ];
+
+  function escapeStoryHtml(value) {
+    return value.replace(/[&<>"']/g, function (character) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[character];
+    });
+  }
+
+  function promptLabPage(sections, heading) {
+    const sectionHtml = sections.map(function (section) {
+      return '<section class="story-project-section"><h3><span>' + escapeStoryHtml(section[0].split('.')[0]) + '</span>' + escapeStoryHtml(section[0].replace(/^\d+\.\s*/, '')) + '</h3><p>' + escapeStoryHtml(section[1]).replace(/\n\n/g, '</p><p>') + '</p></section>';
+    }).join('');
+    return '<article class="story-project-page"><div class="story-project-heading">' + heading + '</div>' + sectionHtml + '</article>';
+  }
+
+  function projectSpread(sections, heading, terms, subtitle) {
+    const escapedTerms = terms.map(function (term) {
+      return term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }).sort(function (a, b) { return b.length - a.length; });
+    const headingHtml = heading ? '<p class="story-project-chapter">' + escapeStoryHtml(heading) + '</p><p class="story-project-subtitle">' + escapeStoryHtml(subtitle) + '</p>' : '';
+    const sectionHtml = sections.map(function (section) {
+      let text = escapeStoryHtml(section[1]);
+      if (escapedTerms.length) {
+        text = text.replace(new RegExp('(' + escapedTerms.join('|') + ')', 'gi'), '<strong>$1</strong>');
+      }
+      text = text.replace(/\n\n/g, '</p><p>');
+      return '<section class="story-project-section"><h3><span>' + escapeStoryHtml(section[0].split('.')[0]) + '</span>' + escapeStoryHtml(section[0].replace(/^\d+\.\s*/, '')) + '</h3><p>' + text + '</p></section>';
+    }).join('');
+    return '<article class="story-project-page"><div class="story-project-heading">' + headingHtml + '</div>' + sectionHtml + '</article>';
+  }
 
   if (!document.querySelector('link[href*="fonts.googleapis.com/css2?family=Caveat"]')) {
     const font = document.createElement('link');
@@ -455,9 +329,22 @@
 
   const notebookWrap = document.createElement('div');
   notebookWrap.className = 'story-notebook-wrap';
-  notebookWrap.innerHTML = '<button id="storyNotebook" class="story-notebook" type="button" aria-label="Open my story sketchbook"><svg viewBox="0 0 64 80" aria-hidden="true"><path d="M17 7h38v66H17z" fill="#c0c1ff" stroke="#4cd7f6" stroke-width="2"/><path d="M17 7v66M22 4v72M27 4v72" fill="none" stroke="#0b1326" stroke-width="3"/><path d="M25 18c11-7 19 8 29 1M25 34c8-5 17 5 29-1M25 50c11-7 18 7 29 1" fill="none" stroke="#0b1326" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 4"/><path d="M54 66l7-18 4 2-7 18z" fill="#ffd700" stroke="#0b1326" stroke-width="1.5"/></svg></button><span class="story-notebook-hint">Drag Doodle here ✏️</span>';
+  notebookWrap.innerHTML = '<button id="storyNotebook" class="story-notebook" type="button" aria-label="Open my story sketchbook"><svg viewBox="0 0 64 80" aria-hidden="true"><path d="M17 7h38v66H17z" fill="#c0c1ff" stroke="#4cd7f6" stroke-width="2"/><path d="M17 7v66M22 4v72M27 4v72" fill="none" stroke="#0b1326" stroke-width="3"/><path d="M25 18c11-7 19 8 29 1M25 34c8-5 17 5 29-1M25 50c11-7 18 7 29 1" fill="none" stroke="#0b1326" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 4"/><path d="M54 66l7-18 4 2-7 18z" fill="#ffd700" stroke="#0b1326" stroke-width="1.5"/></svg></button><span class="story-notebook-hint">Drag MR_Handler here ✏️</span>';
   document.body.appendChild(notebookWrap);
   const notebook = notebookWrap.querySelector('#storyNotebook');
+
+  const homeSection = document.getElementById('home');
+  function updateNotebookVisibility() {
+    if (!homeSection) {
+      notebookWrap.classList.add('is-hidden');
+      return;
+    }
+    const rect = homeSection.getBoundingClientRect();
+    notebookWrap.classList.toggle('is-hidden', rect.bottom <= 0 || rect.top >= window.innerHeight);
+  }
+  updateNotebookVisibility();
+  window.addEventListener('scroll', updateNotebookVisibility, { passive: true });
+  window.addEventListener('resize', updateNotebookVisibility);
 
   const overlay = document.createElement('div');
   overlay.className = 'story-overlay';
@@ -534,14 +421,16 @@
   }
 
   function currentText() {
-    if (currentPage < CHAPTERS.length) return CHAPTERS[currentPage].text;
-    if (currentPage === CHAPTERS.length) return CLOSING_LINE;
+    if (currentPage >= PROMPT_LAB_SPREAD_PAGE + 1 && currentPage <= CLOSING_PAGE - 1) {
+      return CHAPTERS[currentPage - 1].text;
+    }
+    if (currentPage === CLOSING_PAGE) return CLOSING_LINE;
     return '';
   }
 
   function renderPage() {
     clearReveal();
-    const guestbookPage = currentPage === CHAPTERS.length + 1;
+    const guestbookPage = currentPage === PAGE_COUNT - 1;
     storyContent.hidden = guestbookPage;
     guestbook.hidden = !guestbookPage;
     guestbookTitle.removeAttribute('id');
@@ -554,19 +443,77 @@
     leftPage.innerHTML = '';
 
     if (!guestbookPage) {
-      if (currentPage < CHAPTERS.length) {
-        title.textContent = CHAPTERS[currentPage].title;
-        doodle.className = 'story-doodle ti ' + CHAPTERS[currentPage].doodle;
+      if (currentPage === PROMPT_LAB_SPREAD_PAGE) {
+        storyContent.hidden = true;
+        doodle.hidden = true;
+        const heading = '<p class="story-project-chapter">Chapter 01</p><h2>PROMPT LAB</h2><p class="story-project-subtitle">My First Project - Where the Journey Began</p>';
+        leftPage.innerHTML = promptLabPage(PROMPT_BEGINNING, heading);
+        if (window.matchMedia('(max-width: 768px)').matches) {
+          storyContent.hidden = false;
+          title.innerHTML = '';
+          animatedCopy.className = 'story-project-mobile-copy';
+          animatedCopy.innerHTML = promptLabPage(PROMPT_BEGINNING, heading) + promptLabPage(PROMPT_JOURNEY, '');
+        } else {
+          storyContent.hidden = false;
+          title.innerHTML = '';
+          animatedCopy.className = 'story-project-copy';
+          animatedCopy.innerHTML = promptLabPage(PROMPT_JOURNEY, '') + '<blockquote class="story-project-quote">&ldquo;Every great journey begins with a single step. This was mine.&rdquo;</blockquote>';
+        }
+        copySr.textContent = '';
+        shownPages.add(currentPage);
+      } else if (currentPage === NOTEBOOKLM_SPREAD_PAGE || currentPage === IPL_SPREAD_PAGE || currentPage === DELOITTE_SPREAD_PAGE) {
+        const isNotebook = currentPage === NOTEBOOKLM_SPREAD_PAGE;
+        const isDeloitte = currentPage === DELOITTE_SPREAD_PAGE;
+        const heading = isNotebook ? 'CHAPTER 02 - NOTEBOOKLM REPLICA' : isDeloitte ? 'CHAPTER 04 - DELOITTE DATA ANALYTICS JOB SIMULATION' : 'CHAPTER 03 - IPL EXPLORATORY DATA ANALYSIS';
+        const subtitle = isNotebook ? 'From Documents to Intelligent Conversations' : isDeloitte ? 'From Raw Data to Business Insights' : 'Discovering the Stories Behind the Game';
+        const beginning = isNotebook ? NOTEBOOKLM_BEGINNING : isDeloitte ? DELOITTE_BEGINNING : IPL_BEGINNING;
+        const journey = isNotebook ? NOTEBOOKLM_JOURNEY : isDeloitte ? DELOITTE_JOURNEY : IPL_JOURNEY;
+        const terms = isNotebook ? ['Streamlit', 'LangChain', 'Ollama', 'ChromaDB', 'RAG', 'LangGraph'] : isDeloitte ? ['Deloitte', 'Forage', 'Tableau', 'Excel', 'Data Analytics', 'Daikibo Manufacturing'] : ['IPL', 'Python', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'EDA'];
+        storyContent.hidden = window.matchMedia('(max-width: 768px)').matches;
+        doodle.hidden = true;
+        leftPage.innerHTML = projectSpread(beginning, heading, terms, subtitle);
+        if (window.matchMedia('(max-width: 768px)').matches) {
+          storyContent.hidden = false;
+          title.innerHTML = '';
+          animatedCopy.className = 'story-project-mobile-copy';
+          animatedCopy.innerHTML = projectSpread(beginning, heading, terms, subtitle) + projectSpread(journey, '', [], '');
+        } else {
+          storyContent.hidden = false;
+          title.innerHTML = '';
+          animatedCopy.className = 'story-project-copy';
+          animatedCopy.innerHTML = projectSpread(journey, '', terms, '') ;
+        }
+        copySr.textContent = '';
+        shownPages.add(currentPage);
+      } else {
+      if (currentPage >= PROMPT_LAB_SPREAD_PAGE + 1 && currentPage <= CLOSING_PAGE - 1) {
+        title.textContent = CHAPTERS[currentPage - 1].title;
+        doodle.className = 'story-doodle ti ' + CHAPTERS[currentPage - 1].doodle;
       } else {
         title.textContent = 'The journey continues';
         doodle.className = 'story-doodle ti ti-sparkles';
       }
-      revealText(currentText(), shownPages.has(currentPage));
-      if (currentPage === CHAPTERS.length && typeof window.ballSay === 'function') {
+      if (currentPage === 0) {
+        clearReveal();
+        storyContent.classList.add('story-kural-opening');
+        title.innerHTML = '<span>Those who strive without wavering,</span><span>Shall overcome even the power of fate.</span>';
+        animatedCopy.className = 'story-copy story-kural-copy';
+        animatedCopy.innerHTML = '<p class="story-kural-author">&mdash; Thiruvalluvar</p><p class="story-kural-meaning">This Thirukkural teaches us that people who work continuously with determination, patience, and unwavering effort can overcome even the greatest obstacles. No matter how difficult the journey becomes, never give up. Consistency and dedication are the keys to achieving success.</p>';
+        copySr.textContent = '';
+        doodle.hidden = true;
+        shownPages.add(currentPage);
+      } else {
+        storyContent.classList.remove('story-kural-opening');
+        animatedCopy.className = 'story-copy';
+        doodle.hidden = false;
+        revealText(currentText(), shownPages.has(currentPage));
+      }
+      }
+      if (currentPage === CLOSING_PAGE && typeof window.ballSay === 'function') {
         window.ballSay('That\'s my story so far 🙂', 3000);
       }
-      if (!window.matchMedia('(max-width: 768px)').matches && currentPage > 0 && currentPage <= CHAPTERS.length) {
-        const previous = CHAPTERS[currentPage - 1];
+      if (!window.matchMedia('(max-width: 768px)').matches && currentPage !== PROMPT_LAB_SPREAD_PAGE && currentPage !== NOTEBOOKLM_SPREAD_PAGE && currentPage !== IPL_SPREAD_PAGE && currentPage !== DELOITTE_SPREAD_PAGE && currentPage > 0 && currentPage <= CHAPTERS.length) {
+        const previous = CHAPTERS[currentPage - 2];
         if (previous) leftPage.innerHTML = '<h2 class="story-chapter-title">' + previous.title + '</h2><p class="story-chapter-text">' + previous.text + '</p><i class="story-doodle ti ' + previous.doodle + '" aria-hidden="true"></i>';
       }
     }
@@ -627,7 +574,9 @@
   overlay.querySelector('.story-close').addEventListener('click', closeStory);
   overlay.addEventListener('click', function (event) { if (event.target === overlay) closeStory(); });
   rightPage.addEventListener('pointerdown', function (event) {
-    if (!event.target.closest('input, textarea, button, a') && currentText()) revealText(currentText(), true);
+    if (currentPage !== 0 && !event.target.closest('input, textarea, button, a') && currentText()) {
+      revealText(currentText(), true);
+    }
   });
   prevButton.addEventListener('click', function () { turnPage(-1); });
   nextButton.addEventListener('click', function () { turnPage(1); });
@@ -707,4 +656,130 @@
       openStory();
     }
   }, true);
+})();
+
+// BALL_NAME is the only editable identity in the intro.
+(function () {
+  'use strict';
+  const BALL_NAME = 'MR_Handler';
+  // true = play on every page load (skippable); false = only once per browser tab session.
+  const PLAY_EVERY_VISIT = true;
+  // true = every visitor sees the full walking intro, even if their device has "reduce motion" turned on.
+  const ALWAYS_PLAY_FULL_INTRO = true;
+  const ball = document.getElementById('navBall');
+  const notebook = document.getElementById('storyNotebook');
+  if (!ball) return;
+  const timers = [];
+  let walk;
+  let cancelled = false;
+  let userClick = false;
+
+  ball.insertAdjacentHTML('afterbegin', '<span class="ball-limbs" aria-hidden="true">' +
+    '<span class="ball-limb ball-leg ball-leg-left"><span class="ball-shoe"></span></span>' +
+    '<span class="ball-limb ball-leg ball-leg-right"><span class="ball-shoe"></span></span>' +
+    '<span class="ball-limb ball-arm ball-arm-left"><span class="ball-hand"></span></span>' +
+    '<span class="ball-limb ball-arm ball-arm-right"><span class="ball-hand"></span></span>' +
+    '</span>');
+
+  function seen() {
+    if (PLAY_EVERY_VISIT || /[?&]intro=1/.test(location.search)) return false;
+    try { return sessionStorage.getItem('introSeen') === '1'; } catch (error) { return false; }
+  }
+  function markSeen() {
+    try { sessionStorage.setItem('introSeen', '1'); } catch (error) {}
+  }
+  function clearTimers() { timers.forEach(clearTimeout); }
+  function arms(active) { ball.classList.toggle('ball-arms-show', active); }
+  function finish() {
+    clearTimers();
+    if (walk) { walk.cancel(); walk = null; }
+    ball.style.translate = '';
+    ball.classList.remove('ball-walking', 'ball-snapping', 'intro-playing');
+    document.body.classList.remove('intro-playing');
+    arms(false);
+  }
+  function cancel() {
+    cancelled = true;
+    markSeen();
+    if (typeof window.nbClose_menu === 'function') window.nbClose_menu();
+    const bubble = document.getElementById('ballBubble');
+    if (bubble) bubble.classList.remove('is-visible');
+    finish();
+  }
+
+  ball.addEventListener('click', function (event) {
+    if (userClick && event.isTrusted) { event.stopImmediatePropagation(); event.preventDefault(); }
+  }, true);
+
+  ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (type) {
+    document.addEventListener(type, function () {
+      if (!document.body.classList.contains('intro-playing')) return;
+      userClick = type === 'pointerdown';
+      cancel();
+      setTimeout(function () { userClick = false; }, 0);
+    }, { passive: type === 'wheel' || type === 'touchstart', once: false });
+  });
+
+  function later(fn, delay) {
+    timers.push(setTimeout(function () { if (!cancelled) fn(); }, delay));
+  }
+
+  function start() {
+    if (seen() || cancelled || ball.classList.contains('nav-ball--dragging')) return;
+    if (document.querySelector('#portfolioLightbox.active, #certLightbox.active, .story-overlay.is-open')) return;
+    document.body.classList.add('intro-playing');
+    ball.classList.add('ball-walking');
+    const rect = ball.getBoundingClientRect();
+    const startX = window.innerWidth + 40 - rect.left;
+    if ((ALWAYS_PLAY_FULL_INTRO || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) && ball.animate) {
+      const hops = [];
+      for (let i = 0; i <= 10; i++) {
+        hops.push({ translate: Math.round(startX * (1 - i / 10)) + 'px ' + (i % 2 ? '-6px' : '0px') });
+      }
+      walk = ball.animate(hops, { duration: 2500, easing: 'linear', fill: 'forwards' });
+      later(function () {
+        walk.cancel();
+        ball.classList.remove('ball-walking');
+        ball.classList.add('ball-snapping');
+        arms(true);
+        later(function () {
+          ball.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+          later(function () {
+            if (typeof window.nbClose_menu === 'function') window.nbClose_menu();
+            ball.classList.remove('ball-snapping');
+            arms(true);
+            later(function () {
+              arms(true);
+              document.body.classList.remove('intro-playing');
+              if (typeof window.ballMood === 'function') window.ballMood('happy', 1500);
+              ball.classList.add('ball-waving');
+              if (typeof window.ballSay === 'function') window.ballSay("Hii! I'm " + BALL_NAME + " 👋 Welcome to my dad's portfolio.", 3200);
+              later(function () {
+                if (typeof window.ballSay === 'function') window.ballSay('I know all his secrets. Want them? Drag me onto the notebook ✏️', 4500);
+                ball.classList.remove('ball-waving');
+                if (notebook) { notebook.classList.add('hint-pulse'); setTimeout(function () { notebook.classList.remove('hint-pulse'); }, 1800); }
+                arms(false);
+                markSeen();
+              }, 3200);
+            }, 700);
+          }, 1980);
+        }, 1880);
+      }, 2500);
+    } else {
+      later(function () {
+        ball.classList.remove('ball-walking');
+        document.body.classList.remove('intro-playing');
+        arms(true);
+        if (typeof window.ballSay === 'function') window.ballSay("Hii! I'm " + BALL_NAME + " 👋 Welcome to my dad's portfolio.", 3200);
+        later(function () {
+          if (typeof window.ballSay === 'function') window.ballSay('I know all his secrets. Want them? Drag me onto the notebook ✏️', 4500);
+          arms(false);
+          markSeen();
+        }, 3200);
+      }, 1800);
+    }
+  }
+
+  if (document.readyState === 'complete') setTimeout(start, 800);
+  else window.addEventListener('load', function () { setTimeout(start, 800); }, { once: true });
 })();
